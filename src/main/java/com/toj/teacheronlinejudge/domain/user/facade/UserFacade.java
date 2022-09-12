@@ -20,7 +20,7 @@ public class UserFacade {
     }
 
     public void validateEmail(String email) {
-        if (!email.endsWith("@bssm.hs.kr")) {
+        if (!email.endsWith("@bssm.hs.kr") && email.length() != 9) {
             throw NotBssmStudentException.EXCEPTION;
         }
 
