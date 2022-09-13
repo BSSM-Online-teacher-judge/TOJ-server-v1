@@ -38,4 +38,10 @@ public class Teacher extends BaseTimeEntity {
         this.name = name;
         this.description = description;
     }
+
+    public void updateTeacher(String profileImg, String name, String description) {
+        this.profileImg = profileImg;
+        this.name = name;
+        this.description = description;
+    }
 }
