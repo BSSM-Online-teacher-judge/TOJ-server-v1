@@ -3,7 +3,9 @@ package com.toj.teacheronlinejudge.domain.user.facade;
 import com.toj.teacheronlinejudge.domain.user.domain.User;
 import com.toj.teacheronlinejudge.domain.user.domain.repository.UserRepository;
 import com.toj.teacheronlinejudge.domain.user.exception.*;
+import com.toj.teacheronlinejudge.global.security.auth.AuthDetails;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -39,5 +41,10 @@ public class UserFacade {
         if (!passwordEncoder.matches(password, user.getPassword())) {
             throw PasswordMismatchException.EXCEPTION;
         }
+    }
+
+    public User getCurrentUser() {
+        AuthDetails auth = (AuthDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return auth.getUser();
     }
 }
