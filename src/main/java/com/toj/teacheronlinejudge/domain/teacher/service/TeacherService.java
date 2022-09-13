@@ -4,9 +4,13 @@ import com.toj.teacheronlinejudge.domain.teacher.domain.Teacher;
 import com.toj.teacheronlinejudge.domain.teacher.domain.repository.TeacherRepository;
 import com.toj.teacheronlinejudge.domain.teacher.facade.TeacherFacade;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request.TeacherRequestDto;
+import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -29,5 +33,12 @@ public class TeacherService {
     public void updateTeacher(Long id, TeacherRequestDto dto) {
         Teacher teacher = teacherFacade.findTeacherById(id);
         teacher.updateTeacher(dto.getProfileImg(), dto.getName(), dto.getDescription());
+    }
+
+    @Transactional(readOnly = true)
+    public Set<TeacherResponseDto> findTeacherList() {
+        return teacherRepository.findAll().stream()
+                .map(TeacherResponseDto::of)
+                .collect(Collectors.toSet());
     }
 }
