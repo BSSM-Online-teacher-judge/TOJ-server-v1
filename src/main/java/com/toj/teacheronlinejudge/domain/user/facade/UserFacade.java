@@ -1,10 +1,10 @@
 package com.toj.teacheronlinejudge.domain.user.facade;
 
+import com.toj.teacheronlinejudge.domain.user.domain.User;
 import com.toj.teacheronlinejudge.domain.user.domain.repository.UserRepository;
-import com.toj.teacheronlinejudge.domain.user.exception.NotBssmStudentException;
-import com.toj.teacheronlinejudge.domain.user.exception.NotStudentException;
-import com.toj.teacheronlinejudge.domain.user.exception.UserAlreadyExistsException;
+import com.toj.teacheronlinejudge.domain.user.exception.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 public class UserFacade {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public void validateSignUp(String email, String nickName) {
         if (userRepository.existsByEmailAndNickName(email, nickName)) {
@@ -26,6 +27,17 @@ public class UserFacade {
 
         if (email.startsWith("teacher")) {
             throw NotStudentException.EXCEPTION;
+        }
+    }
+
+    public User findUserByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+    }
+
+    public void checkLoginUser(User user, String password) {
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw PasswordMismatchException.EXCEPTION;
         }
     }
 }

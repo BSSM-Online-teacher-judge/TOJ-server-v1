@@ -3,6 +3,7 @@ package com.toj.teacheronlinejudge.domain.user.presentation.dto.request;
 import com.toj.teacheronlinejudge.domain.user.domain.User;
 import com.toj.teacheronlinejudge.domain.user.domain.type.Authority;
 import lombok.Getter;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -30,10 +31,10 @@ public class CreateUserRequest {
     @NotNull(message = "반을 입력해주세요!")
     private int classRoom;
 
-    public User toEntity() {
+    public User toEntity(PasswordEncoder passwordEncoder) {
         return User.builder()
                 .email(email)
-                .password(password)
+                .password(passwordEncoder.encode(password))
                 .nickName(nickName)
                 .name(name)
                 .grade(grade)
