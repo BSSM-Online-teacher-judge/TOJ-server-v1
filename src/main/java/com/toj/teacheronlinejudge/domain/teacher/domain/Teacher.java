@@ -2,6 +2,7 @@ package com.toj.teacheronlinejudge.domain.teacher.domain;
 
 import com.toj.teacheronlinejudge.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -30,4 +31,11 @@ public class Teacher extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
     private List<Comment> commentList= new ArrayList<>();
+
+    @Builder
+    public Teacher(String profileImg, String name, String description) {
+        this.profileImg = profileImg;
+        this.name = name;
+        this.description = description;
+    }
 }
