@@ -17,7 +17,7 @@ import java.util.List;
 public class Comment extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id", nullable = false, unique = false)
+    @Column(name = "comment_id", nullable = false, unique = true)
     private Long id;
 
     @Column(name = "content", nullable = false)

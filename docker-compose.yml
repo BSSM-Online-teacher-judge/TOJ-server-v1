@@ -22,4 +22,4 @@ services:
     hostname: jik
     command: redis-server --port 6379
     ports:
-      - "6380:6379"
+      - "6379:6379"

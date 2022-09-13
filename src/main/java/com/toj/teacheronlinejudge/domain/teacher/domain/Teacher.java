@@ -28,6 +28,6 @@ public class Teacher extends BaseTimeEntity {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
     private List<Comment> commentList= new ArrayList<>();
 }
