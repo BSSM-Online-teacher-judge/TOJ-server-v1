@@ -4,10 +4,7 @@ import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.LoginRequ
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.response.TokenResponseDto;
 import com.toj.teacheronlinejudge.domain.user.service.AuthService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -21,5 +18,10 @@ public class AuthController {
     @PostMapping
     public TokenResponseDto login(@RequestBody @Valid LoginRequestDto dto) {
         return authService.login(dto);
+    }
+
+    @DeleteMapping
+    public void logout() {
+        authService.logout();
     }
 }

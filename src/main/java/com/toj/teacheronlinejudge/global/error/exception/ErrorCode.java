@@ -14,7 +14,12 @@ public enum ErrorCode {
 
     USER_ALREADY_EXISTS(422, "이미 존재하는 유저입니다."),
     USER_NOT_FOUND(404, "존재하지 않는 사용자입니다."),
-    PASSWORD_MISMATCH( 422, "비밀번호가 틀렸습니다!");
+
+    PASSWORD_MISMATCH( 401, "비밀번호가 틀렸습니다!"),
+
+    EXPIRED_TOKEN(401, "토큰이 만료 되었습니다!"),
+    INVALID_TOKEN(401, "유효하지 않은 토큰입니다!")
+    ;
 
     private final int status;
     private final String message;

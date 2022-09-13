@@ -5,11 +5,14 @@ import com.toj.teacheronlinejudge.domain.user.facade.UserFacade;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.LoginRequestDto;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.response.TokenResponseDto;
 import com.toj.teacheronlinejudge.global.redis.RedisService;
-import com.toj.teacheronlinejudge.global.security.jwt.JwtProperties;
 import com.toj.teacheronlinejudge.global.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.Duration;
+
+import static com.toj.teacheronlinejudge.global.security.jwt.JwtProperties.ACCESS_TOKEN_VALID_TIME;
 
 @Service
 @RequiredArgsConstructor
@@ -26,11 +29,17 @@ public class AuthService {
 
         final String accessToken = jwtTokenProvider.createAccessToken(dto.getEmail());
         final String refreshToken = jwtTokenProvider.createRefreshToken(dto.getEmail());
-        redisService.setDataExpire(dto.getEmail(), refreshToken, JwtProperties.REFRESH_TOKEN_VALID_TIME);
+        redisService.setDataExpire(dto.getEmail(), refreshToken, Duration.ofMillis(ACCESS_TOKEN_VALID_TIME));
 
         return TokenResponseDto.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
                 .build();
+    }
+
+    @Transactional
+    public void logout() {
+        User user = userFacade.getCurrentUser();
+        redisService.deleteData(user.getEmail());
     }
 }
