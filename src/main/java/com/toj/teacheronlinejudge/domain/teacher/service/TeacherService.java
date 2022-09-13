@@ -18,4 +18,9 @@ public class TeacherService {
     public void createTeacher(CreateTeacherRequestDto dto) {
         teacherRepository.save(dto.toEntity());
     }
+
+    @Transactional
+    public void deleteTeacher(Long id) {
+        teacherRepository.delete(teacherFacade.findTeacherById(id));
+    }
 }
