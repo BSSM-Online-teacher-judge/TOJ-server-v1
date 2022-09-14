@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final AuthDetailsService authDetailsService;
     private final JwtTokenProvider jwtTokenProvider;
     private final JwtValidateService jwtValidateService;
-
+    
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
