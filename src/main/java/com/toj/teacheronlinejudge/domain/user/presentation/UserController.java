@@ -1,12 +1,10 @@
 package com.toj.teacheronlinejudge.domain.user.presentation;
 
+import com.toj.teacheronlinejudge.domain.user.facade.UserFacade;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.CreateUserRequest;
 import com.toj.teacheronlinejudge.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -15,6 +13,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class UserController {
 
+    private final UserFacade userFacade;
     private final UserService userService;
 
     @PostMapping
@@ -22,5 +21,10 @@ public class UserController {
             @RequestBody @Valid CreateUserRequest dto
     ) {
         userService.signUp(dto);
+    }
+
+    @GetMapping
+    public String getUser() {
+        return userFacade.getCurrentUser().getNickName();
     }
 }

@@ -5,6 +5,8 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+
 @Service
 @RequiredArgsConstructor
 public class RedisService {
@@ -21,7 +23,12 @@ public class RedisService {
         operations.set(key, value);
     }
 
-    public void setDataExpire(String key, String value, long duration) {
+    public void setDataExpire(String key, String value, Duration duration) {
+        ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
+        operations.set(key, value, duration);
+    }
 
+    public void deleteData(String key) {
+        stringRedisTemplate.delete(key);
     }
 }
