@@ -22,7 +22,7 @@ public enum ErrorCode {
 
     TEACHER_NOT_FOUND( 404, "존재하지 않는 선생님입니다!"),
 
-    ;
+    COMMENT_NOT_FOUND(404, "댓글을 찾을 수 없습니다.");
 
     private final int status;
     private final String message;

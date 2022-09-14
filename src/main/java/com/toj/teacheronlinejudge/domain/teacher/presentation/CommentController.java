@@ -21,5 +21,8 @@ public class CommentController {
         commentService.createComment(dto);
     }
 
-    
+    @PostMapping("/child")
+    public void createChildComment(@RequestBody ChildCommentRequestDto dto) {
+        commentService.createChildComment(dto);
+    }
 }

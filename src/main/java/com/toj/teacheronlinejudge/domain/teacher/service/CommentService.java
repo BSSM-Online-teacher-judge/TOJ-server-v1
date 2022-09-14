@@ -32,5 +32,16 @@ public class CommentService {
         );
     }
 
-    
+    @Transactional
+    public void createChildComment(ChildCommentRequestDto dto) {
+        Teacher teacher = teacherFacade.findTeacherById(dto.getTeacherId());
+        User user = userFacade.getUserWithComment(userFacade.getCurrentUser().getId());
+
+        Comment parent = commentFacade.findCommentById(dto.getCommentId());
+
+        commentRepository.save(
+                Comment.createComment(dto.getContent(), teacher, user)
+                        .setParent(parent)
+        );
+    }
 }
