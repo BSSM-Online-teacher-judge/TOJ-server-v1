@@ -5,6 +5,7 @@ import com.toj.teacheronlinejudge.global.security.auth.AuthDetailsService;
 import com.toj.teacheronlinejudge.global.security.jwt.JwtTokenProvider;
 import com.toj.teacheronlinejudge.global.security.jwt.JwtValidateService;
 import com.toj.teacheronlinejudge.global.security.jwt.filter.JwtAuthenticationFilter;
+import com.toj.teacheronlinejudge.global.security.jwt.filter.JwtExceptionFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -52,6 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .addFilterBefore(new JwtAuthenticationFilter(authDetailsService, jwtTokenProvider, jwtValidateService)
                         , UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new JwtExceptionFilter(), JwtAuthenticationFilter.class)
                 ;
     }
 }
