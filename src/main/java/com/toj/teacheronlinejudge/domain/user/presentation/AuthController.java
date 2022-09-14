@@ -21,7 +21,7 @@ public class AuthController {
     }
 
     @DeleteMapping
-    public void logout() {
-        authService.logout();
+    public void logout(@RequestHeader("Authorization")String accessToken) {
+        authService.logout(accessToken);
     }
 }

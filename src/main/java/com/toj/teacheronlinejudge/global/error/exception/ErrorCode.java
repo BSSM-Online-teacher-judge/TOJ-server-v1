@@ -19,6 +19,7 @@ public enum ErrorCode {
 
     EXPIRED_TOKEN(401, "토큰이 만료 되었습니다!"),
     INVALID_TOKEN(401, "유효하지 않은 토큰입니다!"),
+    ALREADY_LOGOUT( 422, "이미 로그아웃한 유저입니다."),
 
     TEACHER_NOT_FOUND( 404, "존재하지 않는 선생님입니다!"),
 

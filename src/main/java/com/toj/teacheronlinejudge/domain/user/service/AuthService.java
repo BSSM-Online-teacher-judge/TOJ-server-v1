@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
+import java.util.Date;
 
 import static com.toj.teacheronlinejudge.global.security.jwt.JwtProperties.ACCESS_TOKEN_VALID_TIME;
 
@@ -38,8 +39,13 @@ public class AuthService {
     }
 
     @Transactional
-    public void logout() {
+    public void logout(String accessToken) {
         User user = userFacade.getCurrentUser();
+
+        String parsedAccessToken = jwtTokenProvider.parseToken(accessToken);
+        long remainTime = jwtTokenProvider.getExpiredTime(parsedAccessToken).getTime() - new Date().getTime();
+        redisService.setBlackList(parsedAccessToken, remainTime);
+
         redisService.deleteData(user.getEmail());
     }
 }
