@@ -1,5 +1,6 @@
 package com.toj.teacheronlinejudge.global.security;
 
+import com.toj.teacheronlinejudge.domain.user.domain.type.Authority;
 import com.toj.teacheronlinejudge.global.security.auth.AuthDetailsService;
 import com.toj.teacheronlinejudge.global.security.jwt.JwtTokenProvider;
 import com.toj.teacheronlinejudge.global.security.jwt.JwtValidateService;
@@ -13,7 +14,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -43,6 +43,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/user").permitAll()
                 .antMatchers(HttpMethod.POST, "/auth").permitAll()
+                .antMatchers(HttpMethod.GET, "/teacher").permitAll()
+                .antMatchers(HttpMethod.POST,"/teacher").hasAuthority(Authority.ADMIN.name())
+                .antMatchers("/teacher/**").hasAuthority(Authority.ADMIN.name())
                 .anyRequest().authenticated()
                 ;
 
