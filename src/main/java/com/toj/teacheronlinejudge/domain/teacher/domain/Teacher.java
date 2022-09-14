@@ -20,7 +20,7 @@ public class Teacher extends BaseTimeEntity {
     @Column(name = "teacher_id", nullable = false, unique = true)
     private Long id;
 
-    @Column(name = "profile_img", nullable = false, unique = true)
+    @Column(name = "profile_img", nullable = false)
     private String profileImg;
 
     @Column(name = "name", nullable = false)
