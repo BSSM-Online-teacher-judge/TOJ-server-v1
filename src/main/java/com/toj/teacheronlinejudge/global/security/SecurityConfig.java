@@ -1,5 +1,6 @@
 package com.toj.teacheronlinejudge.global.security;
 
+import com.toj.teacheronlinejudge.domain.user.domain.type.Authority;
 import com.toj.teacheronlinejudge.global.security.auth.AuthDetailsService;
 import com.toj.teacheronlinejudge.global.security.jwt.JwtTokenProvider;
 import com.toj.teacheronlinejudge.global.security.jwt.JwtValidateService;
@@ -42,6 +43,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/user").permitAll()
                 .antMatchers(HttpMethod.POST, "/auth").permitAll()
+                .antMatchers(HttpMethod.GET, "/teacher").permitAll()
+                .antMatchers(HttpMethod.POST,"/teacher").hasAuthority(Authority.ADMIN.name())
+                .antMatchers("/teacher/**").hasAuthority(Authority.ADMIN.name())
                 .anyRequest().authenticated()
                 ;
 
