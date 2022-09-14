@@ -47,4 +47,9 @@ public class UserFacade {
         AuthDetails auth = (AuthDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return auth.getUser();
     }
+
+    public User getUserWithComment(Long id) {
+        return userRepository.findUserById(id)
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+    }
 }

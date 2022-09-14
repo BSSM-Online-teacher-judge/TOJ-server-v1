@@ -32,7 +32,7 @@ public class Comment extends BaseTimeEntity {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_id", nullable = false)
+    @JoinColumn(name = "parent_id")
     private Comment parent;
 
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
