@@ -7,11 +7,15 @@ import com.toj.teacheronlinejudge.domain.teacher.facade.CommentFacade;
 import com.toj.teacheronlinejudge.domain.teacher.facade.TeacherFacade;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request.ChildCommentRequestDto;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request.CommentRequestDto;
+import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.CommentResponseDto;
 import com.toj.teacheronlinejudge.domain.user.domain.User;
 import com.toj.teacheronlinejudge.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -52,5 +56,13 @@ public class CommentService {
 
         commentFacade.validateDeleteComment(user, comment);
         commentRepository.delete(comment);
+    }
+
+    @Transactional(readOnly = true)
+    public List<CommentResponseDto> findComments(Long teacherId) {
+        Teacher teacher = teacherFacade.findTeacherById(teacherId);
+        return commentFacade.findAllCommentByTeacher(teacher).stream()
+                .map(CommentResponseDto::of)
+                .collect(Collectors.toList());
     }
 }
