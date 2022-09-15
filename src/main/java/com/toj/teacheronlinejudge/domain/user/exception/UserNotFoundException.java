@@ -8,6 +8,6 @@ public class UserNotFoundException extends BusinessException {
     public static final UserNotFoundException EXCEPTION = new UserNotFoundException();
 
     private UserNotFoundException() {
-        super(ErrorCode.USER_ALREADY_EXISTS);
+        super(ErrorCode.USER_NOT_FOUND);
     }
 }

@@ -32,9 +32,27 @@ public class Comment extends BaseTimeEntity {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_id", nullable = false)
+    @JoinColumn(name = "parent_id")
     private Comment parent;
 
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private List<Comment> children = new ArrayList<>();
+
+    public static Comment createComment(String content, Teacher teacher, User user) {
+        Comment comment = new Comment();
+
+        comment.content = content;
+        comment.teacher = teacher;
+        comment.user = user;
+        teacher.getCommentList().add(comment);
+        user.getCommentList().add(comment);
+
+        return comment;
+    }
+
+    public Comment setParent(Comment comment) {
+        this.parent = comment;
+        comment.getChildren().add(this);
+        return this;
+    }
 }
