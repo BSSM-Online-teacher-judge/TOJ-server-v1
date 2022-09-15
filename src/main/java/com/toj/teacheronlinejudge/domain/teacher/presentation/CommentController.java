@@ -25,4 +25,9 @@ public class CommentController {
     public void createChildComment(@RequestBody ChildCommentRequestDto dto) {
         commentService.createChildComment(dto);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteComment(@PathVariable Long id) {
+        commentService.deleteComment(id);
+    }
 }

@@ -44,4 +44,13 @@ public class CommentService {
                         .setParent(parent)
         );
     }
+
+    @Transactional
+    public void deleteComment(Long id) {
+        User user = userFacade.getCurrentUser();
+        Comment comment = commentFacade.findCommentById(id);
+
+        commentFacade.validateDeleteComment(user, comment);
+        commentRepository.delete(comment);
+    }
 }
