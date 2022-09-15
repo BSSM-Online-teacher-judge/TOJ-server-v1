@@ -16,4 +16,10 @@ public class CommentFacade {
         return commentRepository.findById(commentId)
                 .orElseThrow(() -> CommentNotFoundException.EXCEPTION);
     }
+
+    public void validateDeleteComment(User user, Comment comment) {
+        if (!user.getEmail().equals(comment.getUser().getEmail())) {
+            throw UserForbiddenException.EXCEPTION;
+        }
+    }
 }
