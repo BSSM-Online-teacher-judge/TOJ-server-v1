@@ -2,12 +2,12 @@ package com.toj.teacheronlinejudge.domain.teacher.presentation;
 
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request.ChildCommentRequestDto;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request.CommentRequestDto;
+import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.CommentResponseDto;
 import com.toj.teacheronlinejudge.domain.teacher.service.CommentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/teacher/comment")
@@ -29,5 +29,10 @@ public class CommentController {
     @DeleteMapping("/{id}")
     public void deleteComment(@PathVariable Long id) {
         commentService.deleteComment(id);
+    }
+
+    @GetMapping("/{teacherId}")
+    public List<CommentResponseDto> findComments(@PathVariable Long teacherId) {
+        return commentService.findComments(teacherId);
     }
 }
