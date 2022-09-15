@@ -1,6 +1,7 @@
 package com.toj.teacheronlinejudge.domain.teacher.presentation;
 
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request.TeacherRequestDto;
+import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherDetailResponseDto;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherResponseDto;
 import com.toj.teacheronlinejudge.domain.teacher.service.TeacherService;
 import lombok.RequiredArgsConstructor;
@@ -37,5 +38,10 @@ public class TeacherController {
     @GetMapping
     public Set<TeacherResponseDto> findTeacherList() {
         return teacherService.findTeacherList();
+    }
+
+    @GetMapping("/{id}")
+    public TeacherDetailResponseDto findTeacherDetail(@PathVariable Long id) {
+        return teacherService.findTeacherDetail(id);
     }
 }
