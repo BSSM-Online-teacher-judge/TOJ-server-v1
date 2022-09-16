@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>[TOJ] 인증 코드 발송</title>
+  <style>
+      body {
+          text-align: center;
+          background-color: aliceblue;
+      }
+
+      h1 {
+          color: deepskyblue;
+      }
+
+      p {
+          color: red;
+          font-size: 15px;
+      }
+
+      #code {
+          font-weight: bolder;
+          font-size: 40px;
+          border: 2px solid gray;
+          background-color: lightgray;
+          padding: 5px;
+          border: 3px solid deepskyblue;
+      }
+  </style>
+</head>
+<body>
+
+<div>
+
+  <h1>[TOJ] 인증 코드 발송</h1>
+  <div class="issue-body">
+    <h2> 아래의 코드를 클라인트에 입력해주세요</h2>
+    <p> 시크릿 코드의 유효시간은 발급 시간으로부터 3분 입니다.</p>
+    <span id="code" th:text="${code}">CODSFS</span>
+  </div>
+</div>
+</body>
+</html>

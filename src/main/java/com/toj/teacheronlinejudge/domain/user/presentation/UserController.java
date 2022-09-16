@@ -27,4 +27,11 @@ public class UserController {
     public String getUser() {
         return userFacade.getCurrentUser().getNickName();
     }
+
+    @PostMapping("/send-mail")
+    public void sendMail(@RequestParam String email) {
+        userService.sendMail(email);
+    }
+
+    @DeleteMapping("/")
 }
