@@ -2,6 +2,7 @@ package com.toj.teacheronlinejudge.domain.user.service;
 
 import com.toj.teacheronlinejudge.domain.user.domain.repository.UserRepository;
 import com.toj.teacheronlinejudge.domain.user.facade.UserFacade;
+import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.CheckCodeRequestDto;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.CreateUserRequest;
 import com.toj.teacheronlinejudge.global.redis.RedisService;
 import com.toj.teacheronlinejudge.global.utils.RandomCodeUtil;
@@ -45,5 +46,16 @@ public class UserService {
                 mailService.genTemplateEngine("issue-code", Map.of("code", code)),
                 true
         );
+    }
+
+    @Transactional
+    public boolean checkCode(CheckCodeRequestDto dto) {
+        if (redisService.getData(dto.getEmail()).equals(dto.getCode())) {
+            redisService.deleteData(dto.getEmail());
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
