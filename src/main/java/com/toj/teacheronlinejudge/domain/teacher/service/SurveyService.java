@@ -23,11 +23,11 @@ public class SurveyService {
 
     @Transactional
     public void createSurvey(Long id, CreateSurveyRequestDto dto) {
+        User user = userFacade.getUserWithSurvey(userFacade.getCurrentUser().getId());
 
-        surveyFacade.validateCreateSurvey();
+        surveyFacade.validateCreateSurvey(user);
 
         Teacher teacher = teacherFacade.findTeacherById(id);
-        User user = userFacade.getUserWithSurvey(userFacade.getCurrentUser().getId());
 
 
         Survey survey = dto.toEntity();
