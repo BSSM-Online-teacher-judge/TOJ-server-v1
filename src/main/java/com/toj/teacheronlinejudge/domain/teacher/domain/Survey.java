@@ -1,6 +1,7 @@
 package com.toj.teacheronlinejudge.domain.teacher.domain;
 
 import com.toj.teacheronlinejudge.domain.user.domain.User;
+import com.toj.teacheronlinejudge.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "survey_tbl")
-public class Survey {
+public class Survey extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
