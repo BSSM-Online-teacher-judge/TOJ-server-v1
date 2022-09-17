@@ -1,6 +1,7 @@
 package com.toj.teacheronlinejudge.domain.user.presentation;
 
 import com.toj.teacheronlinejudge.domain.user.facade.UserFacade;
+import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.CheckCodeRequestDto;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.CreateUserRequest;
 import com.toj.teacheronlinejudge.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -26,5 +27,15 @@ public class UserController {
     @GetMapping
     public String getUser() {
         return userFacade.getCurrentUser().getNickName();
+    }
+
+    @PostMapping("/send-mail")
+    public void sendMail(@RequestParam String email) {
+        userService.sendMail(email);
+    }
+
+    @DeleteMapping("/check-code")
+    public boolean checkCode(@RequestBody CheckCodeRequestDto dto) {
+        return userService.checkCode(dto);
     }
 }
