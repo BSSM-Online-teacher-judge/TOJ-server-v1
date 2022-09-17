@@ -4,6 +4,7 @@ import com.toj.teacheronlinejudge.domain.teacher.domain.Teacher;
 import com.toj.teacheronlinejudge.domain.teacher.domain.repository.TeacherRepository;
 import com.toj.teacheronlinejudge.domain.teacher.facade.TeacherFacade;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request.TeacherRequestDto;
+import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherDetailResponseDto;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -40,5 +41,10 @@ public class TeacherService {
         return teacherRepository.findAll().stream()
                 .map(TeacherResponseDto::of)
                 .collect(Collectors.toSet());
+    }
+
+    @Transactional(readOnly = true)
+    public TeacherDetailResponseDto findTeacherDetail(Long id) {
+        return TeacherDetailResponseDto.of(teacherFacade.findTeacherById(id));
     }
 }
