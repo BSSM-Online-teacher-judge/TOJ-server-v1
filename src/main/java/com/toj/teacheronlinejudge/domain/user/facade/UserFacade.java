@@ -49,7 +49,12 @@ public class UserFacade {
     }
 
     public User getUserWithComment(Long id) {
-        return userRepository.findUserById(id)
+        return userRepository.findUserWithComment(id)
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+    }
+
+    public User getUserWithSurvey(Long id) {
+        return userRepository.findUserWithSurvey(id)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
     }
 }
