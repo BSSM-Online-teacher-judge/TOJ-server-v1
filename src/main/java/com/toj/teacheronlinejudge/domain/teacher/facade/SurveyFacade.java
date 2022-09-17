@@ -16,7 +16,9 @@ public class SurveyFacade {
 
     public void validateCreateSurvey() {
         List<Integer> dates = List.of(24, 25, 26, 27, 28, 29, 30, 31);
-        if (!dates.contains(new Date().getDate())) {
+        int dayOfNow = LocalDateTime.now().getDayOfMonth();
+
+        if (!dates.contains(dayOfNow)) {
             throw NotTodayException.EXCEPTION;
         }
     }
