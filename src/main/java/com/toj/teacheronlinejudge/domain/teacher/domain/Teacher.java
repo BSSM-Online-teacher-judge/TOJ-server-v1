@@ -32,6 +32,9 @@ public class Teacher extends BaseTimeEntity {
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
     private List<Comment> commentList= new ArrayList<>();
 
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
+    private List<Survey> surveyList = new ArrayList<>();
+
     @Builder
     public Teacher(String profileImg, String name, String description) {
         this.profileImg = profileImg;

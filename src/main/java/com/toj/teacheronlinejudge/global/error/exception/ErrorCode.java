@@ -24,7 +24,11 @@ public enum ErrorCode {
     TEACHER_NOT_FOUND( 404, "존재하지 않는 선생님입니다!"),
 
     COMMENT_NOT_FOUND(404, "댓글을 찾을 수 없습니다."),
-    USER_FORBIDDEN( 403, "유저에게 권한이 없습니다.");
+    USER_FORBIDDEN( 403, "유저에게 권한이 없습니다."),
+
+    NOT_TODAY( 403, "월간 평가는 매달 마지막주에만 참여참여하실 수 있습니다."),
+    ALREADY_SURVEY( 422, "월간 평가는 매달 한 번만 참여가능합니다.")
+    ;
 
     private final int status;
     private final String message;
