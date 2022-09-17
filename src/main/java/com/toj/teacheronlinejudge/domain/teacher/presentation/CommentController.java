@@ -35,4 +35,9 @@ public class CommentController {
     public List<CommentResponseDto> findComments(@PathVariable Long teacherId) {
         return commentService.findComments(teacherId);
     }
+
+    @GetMapping("/{id}/child")
+    public List<CommentResponseDto> findChildComments(@PathVariable Long id) {
+        return commentService.findChildComments(id);
+    }
 }

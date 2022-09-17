@@ -65,4 +65,13 @@ public class CommentService {
                 .map(CommentResponseDto::of)
                 .collect(Collectors.toList());
     }
+
+    @Transactional(readOnly = true)
+    public List<CommentResponseDto> findChildComments(Long id) {
+        Comment comment = commentFacade.findCommentById(id);
+
+        return comment.getChildren().stream()
+                .map(CommentResponseDto::of)
+                .collect(Collectors.toList());
+    }
 }

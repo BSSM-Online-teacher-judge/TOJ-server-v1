@@ -11,12 +11,14 @@ public class CommentResponseDto {
     private Long id;
     private String writerName;
     private String content;
+    private boolean hasChild;
 
     public static CommentResponseDto of(Comment comment) {
         return CommentResponseDto.builder()
                 .id(comment.getId())
                 .writerName(comment.getUser().getName())
                 .content(comment.getContent())
+                .hasChild(comment.getChildren().size()!=0)
                 .build();
     }
 }
