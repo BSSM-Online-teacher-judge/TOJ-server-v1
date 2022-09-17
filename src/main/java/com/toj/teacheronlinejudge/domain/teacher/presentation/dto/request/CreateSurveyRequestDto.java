@@ -1,8 +1,6 @@
 package com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request;
 
 import com.toj.teacheronlinejudge.domain.teacher.domain.Survey;
-import com.toj.teacheronlinejudge.domain.teacher.domain.Teacher;
-import com.toj.teacheronlinejudge.domain.user.domain.User;
 import lombok.Getter;
 
 import javax.validation.constraints.NotNull;
