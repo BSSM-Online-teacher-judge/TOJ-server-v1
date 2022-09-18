@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/teacher/survey/{id}")
+@RequestMapping("/stats/survey/{id}")
 @RequiredArgsConstructor
 public class SurveyController {
 
