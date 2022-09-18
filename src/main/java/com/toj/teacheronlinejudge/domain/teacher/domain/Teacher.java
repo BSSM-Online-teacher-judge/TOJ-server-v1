@@ -1,5 +1,6 @@
 package com.toj.teacheronlinejudge.domain.teacher.domain;
 
+import com.toj.teacheronlinejudge.domain.stats.domain.Stats;
 import com.toj.teacheronlinejudge.domain.stats.domain.Survey;
 import com.toj.teacheronlinejudge.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
@@ -35,6 +36,9 @@ public class Teacher extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
     private List<Survey> surveyList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
+    private List<Stats> statsList = new ArrayList<>();
 
     @Builder
     public Teacher(String profileImg, String name, String description) {

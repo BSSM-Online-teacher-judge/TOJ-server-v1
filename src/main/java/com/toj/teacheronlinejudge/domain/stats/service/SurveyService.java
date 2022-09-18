@@ -20,6 +20,7 @@ public class SurveyService {
     private final UserFacade userFacade;
     private final TeacherFacade teacherFacade;
     private final SurveyFacade surveyFacade;
+    private final StatsService statsService;
 
     @Transactional
     public void createSurvey(Long id, CreateSurveyRequestDto dto) {
@@ -32,6 +33,8 @@ public class SurveyService {
 
         Survey survey = dto.toEntity();
         survey.setRelation(teacher, user);
+
+        statsService.updateStats(survey);
 
         surveyRepository.save(survey);
     }
