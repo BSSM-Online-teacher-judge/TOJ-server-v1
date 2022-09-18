@@ -1,8 +1,8 @@
-package com.toj.teacheronlinejudge.domain.teacher.facade;
+package com.toj.teacheronlinejudge.domain.stats.facade;
 
-import com.toj.teacheronlinejudge.domain.teacher.domain.repository.SurveyRepository;
-import com.toj.teacheronlinejudge.domain.teacher.exception.AlreadySurveyException;
-import com.toj.teacheronlinejudge.domain.teacher.exception.NotTodayException;
+import com.toj.teacheronlinejudge.domain.stats.domain.repository.SurveyRepository;
+import com.toj.teacheronlinejudge.domain.stats.exception.AlreadySurveyException;
+import com.toj.teacheronlinejudge.domain.stats.exception.NotTodayException;
 import com.toj.teacheronlinejudge.domain.user.domain.User;
 import com.toj.teacheronlinejudge.global.utils.DateUtil;
 import lombok.RequiredArgsConstructor;

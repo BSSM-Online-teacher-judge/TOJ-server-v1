@@ -1,4 +1,4 @@
-package com.toj.teacheronlinejudge.domain.teacher.exception;
+package com.toj.teacheronlinejudge.domain.stats.exception;
 
 import com.toj.teacheronlinejudge.global.error.exception.BusinessException;
 import com.toj.teacheronlinejudge.global.error.exception.ErrorCode;

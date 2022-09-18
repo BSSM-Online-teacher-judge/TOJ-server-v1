@@ -1,5 +1,6 @@
 package com.toj.teacheronlinejudge.domain.teacher.domain;
 
+import com.toj.teacheronlinejudge.domain.stats.domain.Survey;
 import com.toj.teacheronlinejudge.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;

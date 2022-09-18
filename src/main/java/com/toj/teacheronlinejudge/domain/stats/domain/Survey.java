@@ -1,5 +1,6 @@
-package com.toj.teacheronlinejudge.domain.teacher.domain;
+package com.toj.teacheronlinejudge.domain.stats.domain;
 
+import com.toj.teacheronlinejudge.domain.teacher.domain.Teacher;
 import com.toj.teacheronlinejudge.domain.user.domain.User;
 import com.toj.teacheronlinejudge.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;

@@ -1,6 +1,6 @@
-package com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request;
+package com.toj.teacheronlinejudge.domain.stats.presentation.dto.request;
 
-import com.toj.teacheronlinejudge.domain.teacher.domain.Survey;
+import com.toj.teacheronlinejudge.domain.stats.domain.Survey;
 import lombok.Getter;
 
 import javax.validation.constraints.NotNull;
