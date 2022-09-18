@@ -1,12 +1,12 @@
-package com.toj.teacheronlinejudge.domain.teacher.presentation;
+package com.toj.teacheronlinejudge.domain.stats.presentation;
 
-import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request.CreateSurveyRequestDto;
-import com.toj.teacheronlinejudge.domain.teacher.service.SurveyService;
+import com.toj.teacheronlinejudge.domain.stats.presentation.dto.request.CreateSurveyRequestDto;
+import com.toj.teacheronlinejudge.domain.stats.service.SurveyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/teacher/survey/{id}")
+@RequestMapping("/stats/survey/{id}")
 @RequiredArgsConstructor
 public class SurveyController {
 
