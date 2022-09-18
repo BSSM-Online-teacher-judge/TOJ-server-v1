@@ -3,7 +3,6 @@ package com.toj.teacheronlinejudge.domain.stats.service;
 import com.toj.teacheronlinejudge.domain.stats.domain.Stats;
 import com.toj.teacheronlinejudge.domain.stats.domain.Survey;
 import com.toj.teacheronlinejudge.domain.stats.domain.repository.StatsRepository;
-import com.toj.teacheronlinejudge.domain.stats.facade.StatsFacade;
 import com.toj.teacheronlinejudge.global.utils.DateUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 public class StatsService {
 
     private final StatsRepository statsRepository;
-    private final StatsFacade statsFacade;
 
     public void updateStats(Survey survey) {
         Stats stats = statsRepository.findByTeacherAndCreatedAtBetween(
