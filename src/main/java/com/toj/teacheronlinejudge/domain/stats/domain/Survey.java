@@ -2,7 +2,7 @@ package com.toj.teacheronlinejudge.domain.stats.domain;
 
 import com.toj.teacheronlinejudge.domain.teacher.domain.Teacher;
 import com.toj.teacheronlinejudge.domain.user.domain.User;
-import com.toj.teacheronlinejudge.global.entity.BaseTimeEntity;
+import com.toj.teacheronlinejudge.global.entity.BaseStatsEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "survey_tbl")
-public class Survey extends BaseTimeEntity {
+public class Survey extends BaseStatsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,18 +28,6 @@ public class Survey extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-
-    private int humor;      // 유머
-    private int tenacity;   // 인성
-    private int expertise;  // 전문성
-    private int fairness;   // 공평성
-    private int snackReadiness;  // 간식 준비성
-    private int modesty;    // 겸손
-    private int passion;    // 열정
-
-    private int stubborn;   // 고집
-    private int authoritarianism; // 권위주의
-    private int SUA;    // 급발진 정도
 
     @Builder
     public Survey(Teacher teacher, User user, int humor, int tenacity, int expertise, int fairness, int snackReadiness, int modesty, int passion, int stubborn, int authoritarianism, int SUA) {
