@@ -14,13 +14,6 @@ public class SurveyFacade {
     private final SurveyRepository surveyRepository;
 
     public void validateCreateSurvey(User user) {
-        // TODO :: 의논 필요
-//        List<Integer> dates = List.of(24, 25, 26, 27, 28, 29, 30, 31);
-//        int dayOfNow = LocalDateTime.now().getDayOfMonth();
-//
-//        if (!dates.contains(dayOfNow)) {
-//            throw NotTodayException.EXCEPTION;
-//        }
         if (surveyRepository.existsByUserAndCreatedAtAfter(user, DateUtil.monthOfStart())) {
             throw AlreadySurveyException.EXCEPTION;
         }
