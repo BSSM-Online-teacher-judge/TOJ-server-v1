@@ -23,7 +23,7 @@ public class Stats extends BaseStatsEntity {
     private Teacher teacher;
 
     @Builder
-    public Stats(Teacher teacher, int humor, int tenacity, int expertise, int fairness, int snackReadiness, int modesty, int passion, int stubborn, int authoritarianism, int SUA) {
+    public Stats(Teacher teacher, int humor, int tenacity, int expertise, int fairness, int snackReadiness, int modesty, int passion, int stubborn, int authoritarianism, int sua) {
         this.teacher = teacher;
         this.humor = humor;
         this.tenacity = tenacity;
@@ -34,7 +34,7 @@ public class Stats extends BaseStatsEntity {
         this.passion = passion;
         this.stubborn = stubborn;
         this.authoritarianism = authoritarianism;
-        this.SUA = SUA;
+        this.sua = sua;
     }
 
     public static Stats createStats(Survey survey) {
@@ -49,9 +49,9 @@ public class Stats extends BaseStatsEntity {
                 .passion(survey.getPassion())
                 .stubborn(survey.getStubborn())
                 .authoritarianism(survey.getAuthoritarianism())
-                .SUA(survey.getSUA())
-                .build()
-                ;
+                .sua(survey.getSua())
+                .build();
+
         survey.getTeacher().getStatsList().add(stats);
 
         return stats;
@@ -67,6 +67,6 @@ public class Stats extends BaseStatsEntity {
         this.passion += survey.getPassion();
         this.stubborn += survey.getStubborn();
         this.authoritarianism += survey.getAuthoritarianism();
-        this.SUA += survey.getSUA();
+        this.sua += survey.getSua();
     }
 }

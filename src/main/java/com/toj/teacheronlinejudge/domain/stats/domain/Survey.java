@@ -30,7 +30,7 @@ public class Survey extends BaseStatsEntity {
     private User user;
 
     @Builder
-    public Survey(Teacher teacher, User user, int humor, int tenacity, int expertise, int fairness, int snackReadiness, int modesty, int passion, int stubborn, int authoritarianism, int SUA) {
+    public Survey(Teacher teacher, User user, int humor, int tenacity, int expertise, int fairness, int snackReadiness, int modesty, int passion, int stubborn, int authoritarianism, int sua) {
         this.teacher = teacher;
         this.user = user;
         this.humor = humor;
@@ -42,7 +42,7 @@ public class Survey extends BaseStatsEntity {
         this.passion = passion;
         this.stubborn = stubborn;
         this.authoritarianism = authoritarianism;
-        this.SUA = SUA;
+        this.sua = sua;
     }
 
     public void setRelation(Teacher teacher, User user) {

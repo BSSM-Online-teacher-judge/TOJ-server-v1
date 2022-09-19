@@ -3,52 +3,64 @@ package com.toj.teacheronlinejudge.domain.stats.presentation.dto.request;
 import com.toj.teacheronlinejudge.domain.stats.domain.Survey;
 import lombok.Getter;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Getter
 public class CreateSurveyRequestDto {
 
     @NotNull
-    @Size(max = 10)
+    @Min(0)
+    @Max(10)
     private int humor;      // 유머
     
     @NotNull
-    @Size(max = 10)
+    @Min(0)
+    @Max(10)
     private int tenacity;   // 인성
     
     @NotNull
-    @Size(max = 10)
+    @Min(0)
+    @Max(10)
     private int expertise;  // 전문성
     
     @NotNull
-    @Size(max = 10)
+    @Min(0)
+    @Max(10)
     private int fairness;   // 공평성
     
     @NotNull
-    @Size(max = 10)
+    @Min(0)
+    @Max(10)
     private int snackReadiness;  // 간식 준비성
     
     @NotNull
-    @Size(max = 10)
+    @Min(0)
+    @Max(10)
     private int modesty;    // 겸손
     
     @NotNull
-    @Size(max = 10)
+    @Min(0)
+    @Max(10)
     private int passion;    // 열정
 
     
     @NotNull
-    @Size(max = 10)
+    @Min(0)
+    @Max(10)
     private int stubborn;   // 고집
     
     @NotNull
-    @Size(max = 10)
+    @Min(0)
+    @Max(10)
     private int authoritarianism; // 권위주의
-    
+
+    // TODO :: SIZE 안먹음
     @NotNull
-    @Size(max = 10)
-    private int SUA;    // 급발진 정도
+    @Min(0)
+    @Max(10)
+    private int sua;    // 급발진 정도
 
     public Survey toEntity() {
         return Survey.builder()
@@ -61,7 +73,7 @@ public class CreateSurveyRequestDto {
                 .passion(passion)
                 .stubborn(stubborn)
                 .authoritarianism(authoritarianism)
-                .SUA(SUA)
+                .sua(sua)
                 .build();
     }
 }
