@@ -31,8 +31,8 @@ public class Teacher extends BaseTimeEntity {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "overall", nullable = false)
-    private int overall;
+    @Column(name = "tier", nullable = false)
+    private int tier;
 
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
     private List<Comment> commentList= new ArrayList<>();
@@ -56,9 +56,10 @@ public class Teacher extends BaseTimeEntity {
         this.description = description;
     }
 
-    public void updateOverall(Survey survey) {
+    public void updateTier(Survey survey) {
 
         // TODO :: 간식 준비성 오버롤에 포함할지 논의 필요
+        // TODO :: 티어 공식 논의 필요
         int positive =
                 survey.getExpertise()
                 + survey.getFairness()
@@ -72,6 +73,6 @@ public class Teacher extends BaseTimeEntity {
                 + survey.getStubborn()
                 + survey.getSUA();
 
-        this.overall += (positive - (negative*2)) / 6;
+        this.tier += (positive - (negative*2)) / 6;
     }
 }

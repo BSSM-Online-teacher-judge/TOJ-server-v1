@@ -26,6 +26,6 @@ public class StatsService {
             stats.update(survey);
         }
 
-        stats.getTeacher().updateOverall(survey);
+        stats.getTeacher().updateTier(survey);
     }
 }
