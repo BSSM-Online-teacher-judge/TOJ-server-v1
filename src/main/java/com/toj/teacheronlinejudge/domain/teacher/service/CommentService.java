@@ -62,6 +62,7 @@ public class CommentService {
     public List<CommentResponseDto> findComments(Long teacherId) {
         Teacher teacher = teacherFacade.findTeacherById(teacherId);
         return commentFacade.findAllCommentByTeacher(teacher).stream()
+                .filter(comment -> comment.getParent() == null)
                 .map(CommentResponseDto::of)
                 .collect(Collectors.toList());
     }
