@@ -44,7 +44,7 @@ public class AuthService {
 
         String parsedAccessToken = jwtTokenProvider.parseToken(accessToken);
         long remainTime = jwtTokenProvider.getExpiredTime(parsedAccessToken).getTime() - new Date().getTime();
-        redisService.setBlackList(parsedAccessToken, remainTime);
+        redisService.setBlackList(parsedAccessToken, Duration.ofMillis(remainTime));
 
         redisService.deleteData(user.getEmail());
     }

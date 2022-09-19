@@ -71,7 +71,7 @@ public class Teacher extends BaseTimeEntity {
         int negative =
                 survey.getAuthoritarianism()
                 + survey.getStubborn()
-                + survey.getSUA();
+                + survey.getSua();
 
         this.tier += (positive - (negative*2)) / 6;
     }
