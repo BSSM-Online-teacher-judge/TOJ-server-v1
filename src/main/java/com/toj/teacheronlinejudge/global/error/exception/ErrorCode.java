@@ -28,6 +28,8 @@ public enum ErrorCode {
 
     NOT_TODAY( 403, "월간 평가는 매달 마지막주에만 참여참여하실 수 있습니다."),
     ALREADY_SURVEY( 422, "월간 평가는 매월 한 선생님다 한 번만 참여가능합니다."),
+
+    STATS_NOT_FOUND( 403, "스탯을 찾을 수 없습니다.")
     ;
 
     private final int status;
