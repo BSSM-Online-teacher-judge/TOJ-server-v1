@@ -5,6 +5,8 @@ import com.toj.teacheronlinejudge.domain.stats.service.SurveyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/stats/survey/{id}")
 @RequiredArgsConstructor
@@ -15,7 +17,7 @@ public class SurveyController {
     @PostMapping
     public void createSurvey(
             @PathVariable Long id,
-            @RequestBody CreateSurveyRequestDto dto
+            @Valid @RequestBody CreateSurveyRequestDto dto
     ) {
         surveyService.createSurvey(id, dto);
     }
