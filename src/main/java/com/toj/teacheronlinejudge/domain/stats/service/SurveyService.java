@@ -29,8 +29,6 @@ public class SurveyService {
 
         surveyFacade.validateCreateSurvey(user, teacher);
 
-
-
         Survey survey = dto.toEntity();
         survey.setRelation(teacher, user);
 

@@ -38,5 +38,5 @@ public class BaseStatsEntity extends BaseTimeEntity{
     protected int authoritarianism; // 권위주의
 
     @Column(name = "SUA", nullable = false)
-    protected int SUA;    // 급발진 정도
+    protected int sua;    // 급발진 정도
 }
