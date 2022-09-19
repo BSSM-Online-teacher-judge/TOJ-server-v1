@@ -28,10 +28,12 @@ public class StatsService {
         );
 
         if (stats == null) {
-            statsRepository.save(Stats.createStats(survey));
+            stats = statsRepository.save(Stats.createStats(survey));
         } else {
             stats.update(survey);
         }
+
+        stats.getTeacher().updateTier(survey);
     }
 
     @Transactional(readOnly = true)
