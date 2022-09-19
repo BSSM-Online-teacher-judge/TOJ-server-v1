@@ -27,7 +27,7 @@ public enum ErrorCode {
     USER_FORBIDDEN( 403, "유저에게 권한이 없습니다."),
 
     NOT_TODAY( 403, "월간 평가는 매달 마지막주에만 참여참여하실 수 있습니다."),
-    ALREADY_SURVEY( 422, "월간 평가는 매달 한 번만 참여가능합니다.")
+    ALREADY_SURVEY( 422, "월간 평가는 매월 한 선생님다 한 번만 참여가능합니다."),
     ;
 
     private final int status;
