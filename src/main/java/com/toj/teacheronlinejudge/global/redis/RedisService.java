@@ -35,9 +35,9 @@ public class RedisService {
     }
 
 
-    public void setBlackList(String key, long remainTime) {
+    public void setBlackList(String key, Duration duration) {
         ValueOperations<String, String> operations = blackListTemplate.opsForValue();
-        operations.set(key, "logout", remainTime);
+        operations.set(key, "logout", duration);
     }
 
     public boolean hasBlackList(String key) {
