@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -72,6 +73,7 @@ public class CommentService {
         Comment comment = commentFacade.findCommentById(id);
 
         return comment.getChildren().stream()
+                .sorted(Comparator.comparing(Comment::getCreatedAt, Comparator.reverseOrder()))
                 .map(CommentResponseDto::of)
                 .collect(Collectors.toList());
     }
