@@ -3,6 +3,7 @@ package com.toj.teacheronlinejudge.domain.user.presentation;
 import com.toj.teacheronlinejudge.domain.user.facade.UserFacade;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.CheckCodeRequestDto;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.CreateUserRequest;
+import com.toj.teacheronlinejudge.domain.user.presentation.dto.response.UserResponseDto;
 import com.toj.teacheronlinejudge.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -25,9 +26,11 @@ public class UserController {
     }
 
     @GetMapping
-    public String getUser() {
-        return userFacade.getCurrentUser().getNickName();
+    public UserResponseDto findCurrentUser() {
+        return userService.findCurrentUser();
     }
+
+
 
     @PostMapping("/send-mail")
     public void sendMail(@RequestParam String email) {
