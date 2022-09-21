@@ -48,10 +48,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/auth").permitAll()
                 .antMatchers(HttpMethod.GET, "/teacher").permitAll()
                 .antMatchers(HttpMethod.POST,"/teacher").hasAuthority(Authority.ADMIN.name())
+                .antMatchers("/teacher/**").hasAuthority(Authority.ADMIN.name())
                 .antMatchers(HttpMethod.POST, "/teacher/comment/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/teacher/comment/**").authenticated()
                 .antMatchers(HttpMethod.POST, "/teacher/survey").hasAuthority(Authority.USER.name())
-                .antMatchers("/teacher/**").hasAuthority(Authority.ADMIN.name())
                 .anyRequest().authenticated()
                 ;
 
