@@ -4,6 +4,8 @@ import com.toj.teacheronlinejudge.domain.user.domain.repository.UserRepository;
 import com.toj.teacheronlinejudge.domain.user.facade.UserFacade;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.CheckCodeRequestDto;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.CreateUserRequest;
+import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.UpdateUserResponseDto;
+import com.toj.teacheronlinejudge.domain.user.presentation.dto.response.UserResponseDto;
 import com.toj.teacheronlinejudge.global.redis.RedisService;
 import com.toj.teacheronlinejudge.global.utils.RandomCodeUtil;
 import lombok.RequiredArgsConstructor;
@@ -57,5 +59,16 @@ public class UserService {
         else {
             return false;
         }
+    }
+
+    @Transactional(readOnly = true)
+    public UserResponseDto findCurrentUser() {
+        return UserResponseDto.of(userFacade.getCurrentUser());
+    }
+
+    @Transactional
+    public void updateUser(UpdateUserResponseDto dto) {
+        userFacade.findUserByEmail(userFacade.getCurrentUser().getEmail())
+                .updateUser(dto.getNickName());
     }
 }

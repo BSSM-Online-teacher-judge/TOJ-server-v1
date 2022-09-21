@@ -61,4 +61,8 @@ public class User extends BaseTimeEntity {
         this.classRoom = classRoom;
         this.authority = authority;
     }
+
+    public void updateUser(String nickName) {
+        this.nickName = nickName;
+    }
 }
