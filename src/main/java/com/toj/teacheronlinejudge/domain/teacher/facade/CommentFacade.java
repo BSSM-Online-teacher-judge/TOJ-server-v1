@@ -7,6 +7,7 @@ import com.toj.teacheronlinejudge.domain.teacher.exception.CommentNotFoundExcept
 import com.toj.teacheronlinejudge.domain.teacher.exception.UserForbiddenException;
 import com.toj.teacheronlinejudge.domain.user.domain.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -29,6 +30,6 @@ public class CommentFacade {
     }
 
     public List<Comment> findAllCommentByTeacher(Teacher teacher) {
-        return commentRepository.findByTeacher(teacher);
+        return commentRepository.findByTeacher(teacher, Sort.by(Sort.Direction.DESC, "createdAt"));
     }
 }
