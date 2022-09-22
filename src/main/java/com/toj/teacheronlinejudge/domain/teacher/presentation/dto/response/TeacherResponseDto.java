@@ -13,6 +13,7 @@ public class TeacherResponseDto {
     private String description;
     private String profileImg;
     private boolean isCompleted;
+    private int numberOfSubmit;
 
     public static TeacherResponseDto of(Teacher teacher, User user) {
         boolean isCompleted = teacher.getSurveyList().stream()
@@ -24,6 +25,7 @@ public class TeacherResponseDto {
                 .description(teacher.getDescription())
                 .profileImg(teacher.getProfileImg())
                 .isCompleted(isCompleted)
+                .numberOfSubmit(teacher.getSurveyList().size())
                 .build();
     }
 }
