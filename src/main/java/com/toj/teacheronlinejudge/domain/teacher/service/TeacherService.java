@@ -4,12 +4,15 @@ import com.toj.teacheronlinejudge.domain.teacher.domain.Teacher;
 import com.toj.teacheronlinejudge.domain.teacher.domain.repository.TeacherRepository;
 import com.toj.teacheronlinejudge.domain.teacher.facade.TeacherFacade;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request.TeacherRequestDto;
-import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherDetailResponseDto;
+import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherRankingResponseDto;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherResponseDto;
+import com.toj.teacheronlinejudge.domain.user.domain.User;
+import com.toj.teacheronlinejudge.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -19,6 +22,7 @@ public class TeacherService {
 
     private final TeacherRepository teacherRepository;
     private final TeacherFacade teacherFacade;
+    private final UserFacade userFacade;
 
     @Transactional
     public void createTeacher(TeacherRequestDto dto) {
@@ -38,13 +42,25 @@ public class TeacherService {
 
     @Transactional(readOnly = true)
     public Set<TeacherResponseDto> findTeacherList() {
+        User user = userFacade.getCurrentUser();
+
         return teacherRepository.findAll().stream()
-                .map(TeacherResponseDto::of)
+                .map(teacher -> TeacherResponseDto.of(teacher, user))
                 .collect(Collectors.toSet());
     }
 
     @Transactional(readOnly = true)
-    public TeacherDetailResponseDto findTeacherDetail(Long id) {
-        return TeacherDetailResponseDto.of(teacherFacade.findTeacherById(id));
+    public TeacherResponseDto findTeacherDetail(Long id) {
+        User user = userFacade.getCurrentUser();
+        return TeacherResponseDto.of(teacherFacade.findTeacherById(id), user);
+    }
+
+    @Transactional(readOnly = true)
+    public List<TeacherRankingResponseDto> findTeacherRanking() {
+        User user = userFacade.getCurrentUser();
+
+        return teacherRepository.findAllByOrderByTierDesc().stream()
+                .map(TeacherRankingResponseDto::of)
+                .collect(Collectors.toList());
     }
 }

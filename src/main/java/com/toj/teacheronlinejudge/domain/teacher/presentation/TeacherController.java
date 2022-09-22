@@ -1,13 +1,14 @@
 package com.toj.teacheronlinejudge.domain.teacher.presentation;
 
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request.TeacherRequestDto;
-import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherDetailResponseDto;
+import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherRankingResponseDto;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherResponseDto;
 import com.toj.teacheronlinejudge.domain.teacher.service.TeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -41,7 +42,12 @@ public class TeacherController {
     }
 
     @GetMapping("/{id}")
-    public TeacherDetailResponseDto findTeacherDetail(@PathVariable Long id) {
+    public TeacherResponseDto findTeacherDetail(@PathVariable Long id) {
         return teacherService.findTeacherDetail(id);
+    }
+
+    @GetMapping("/ranking")
+    public List<TeacherRankingResponseDto> findTeacherRanking() {
+        return teacherService.findTeacherRanking();
     }
 }
