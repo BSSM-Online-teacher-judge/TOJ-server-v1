@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final AuthDetailsService authDetailsService;
     private final JwtTokenProvider jwtTokenProvider;
     private final JwtValidateService jwtValidateService;
-    
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -54,12 +54,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/teacher/comment/**").authenticated()
                 .antMatchers(HttpMethod.POST, "/teacher/survey").hasAuthority(Authority.USER.name())
                 .anyRequest().authenticated()
-                ;
+        ;
 
         http
                 .addFilterBefore(new JwtAuthenticationFilter(authDetailsService, jwtTokenProvider, jwtValidateService)
                         , UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new JwtExceptionFilter(), JwtAuthenticationFilter.class)
-                ;
+        ;
     }
 }
