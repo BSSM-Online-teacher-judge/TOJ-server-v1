@@ -31,7 +31,8 @@ public enum ErrorCode {
 
     STATS_NOT_FOUND( 403, "스탯을 찾을 수 없습니다."),
 
-    ALREADY_LIKE(403, "이미 좋아요를 눌렀습니다.")
+    ALREADY_LIKE(403, "이미 좋아요를 눌렀습니다."),
+    LIKE_NOT_FOUND( 404, "좋아요를 찾을 수 없습니다."),
     ;
 
     private final int status;

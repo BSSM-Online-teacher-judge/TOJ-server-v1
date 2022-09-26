@@ -8,4 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface LikeRepository extends JpaRepository<Like, Long> {
 
     boolean existsByTeacherAndUser(Teacher teacher, User user);
+
+    void deleteByTeacherAndUser(Teacher teacher, User user);
 }
