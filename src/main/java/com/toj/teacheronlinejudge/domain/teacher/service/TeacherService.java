@@ -41,12 +41,12 @@ public class TeacherService {
     }
 
     @Transactional(readOnly = true)
-    public Set<TeacherResponseDto> findTeacherList() {
+    public List<TeacherResponseDto> findTeacherList() {
         User user = userFacade.getCurrentUser();
 
-        return teacherRepository.findAll().stream()
+        return teacherRepository.findAllByOrderByLikesDesc().stream()
                 .map(teacher -> TeacherResponseDto.of(teacher, user))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)

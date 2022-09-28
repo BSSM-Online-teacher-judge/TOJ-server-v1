@@ -29,4 +29,14 @@ public class LikeService {
 
         likeRepository.save(Like.createLike(teacher, user));
     }
+
+    @Transactional
+    public void removeLike(Long teacherId) {
+        Teacher teacher = teacherFacade.findTeacherById(teacherId);
+        User user = userFacade.findUserByEmail(userFacade.getCurrentUser().getEmail());
+
+        likeFacade.validateRemoveLike(teacher, user);
+
+        likeRepository.deleteByTeacherAndUser(teacher, user);
+    }
 }

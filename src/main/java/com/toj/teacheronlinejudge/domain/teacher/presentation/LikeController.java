@@ -2,10 +2,7 @@ package com.toj.teacheronlinejudge.domain.teacher.presentation;
 
 import com.toj.teacheronlinejudge.domain.teacher.service.LikeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/teacher/like/{teacherId}")
@@ -19,4 +16,8 @@ public class LikeController {
         likeService.createLike(teacherId);
     }
 
+    @DeleteMapping
+    public void removeLike(@PathVariable Long teacherId) {
+        likeService.removeLike(teacherId);
+    }
 }

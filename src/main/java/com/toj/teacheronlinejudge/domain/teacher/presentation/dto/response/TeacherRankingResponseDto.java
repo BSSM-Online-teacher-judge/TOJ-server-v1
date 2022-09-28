@@ -11,6 +11,7 @@ public class TeacherRankingResponseDto {
     private String name;
     private String description;
     private String profileImg;
+    private int numberOfLikes;
 
     public static TeacherRankingResponseDto of(Teacher teacher) {
         return TeacherRankingResponseDto.builder()
@@ -18,6 +19,7 @@ public class TeacherRankingResponseDto {
                 .name(teacher.getName())
                 .description(teacher.getDescription())
                 .profileImg(teacher.getProfileImg())
+                .numberOfLikes(teacher.getLikes().size())
                 .build();
     }
 }

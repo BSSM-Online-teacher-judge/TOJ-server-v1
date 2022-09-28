@@ -37,7 +37,7 @@ public class TeacherController {
     }
 
     @GetMapping
-    public Set<TeacherResponseDto> findTeacherList() {
+    public List<TeacherResponseDto> findTeacherList() {
         return teacherService.findTeacherList();
     }
 
