@@ -58,15 +58,15 @@ public class Stats extends BaseStatsEntity {
     }
 
     public void update(Survey survey) {
-        this.humor += survey.getHumor();
-        this.tenacity += survey.getTenacity();
-        this.expertise += survey.getExpertise();
-        this.fairness += survey.getFairness();
-        this.snackReadiness += survey.getSnackReadiness();
-        this.modesty += survey.getModesty();
-        this.passion += survey.getPassion();
-        this.stubborn += survey.getStubborn();
-        this.authoritarianism += survey.getAuthoritarianism();
-        this.sua += survey.getSua();
+        this.humor = (this.humor + survey.getHumor()) / 2;
+        this.tenacity = (this.tenacity + survey.getTenacity()) / 2;
+        this.expertise = (this.expertise + survey.getExpertise()) / 2;
+        this.fairness = (this.fairness + survey.getFairness()) / 2;
+        this.snackReadiness = (this.snackReadiness + survey.getSnackReadiness()) / 2;
+        this.modesty = (this.modesty + survey.getModesty()) / 2;
+        this.passion = (this.passion + survey.getPassion()) / 2;
+        this.stubborn = (this.stubborn + survey.getStubborn()) / 2;
+        this.authoritarianism = (this.authoritarianism + survey.getAuthoritarianism()) / 2;
+        this.sua = (this.sua + survey.getSua()) / 2;
     }
 }
