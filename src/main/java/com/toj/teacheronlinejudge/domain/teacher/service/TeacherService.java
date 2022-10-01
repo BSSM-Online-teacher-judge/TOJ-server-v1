@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,7 +36,7 @@ public class TeacherService {
     @Transactional
     public void updateTeacher(Long id, TeacherRequestDto dto) {
         Teacher teacher = teacherFacade.findTeacherById(id);
-        teacher.updateTeacher(dto.getProfileImg(), dto.getName(), dto.getDescription());
+        teacher.updateTeacher(dto.getName(), dto.getDescription());
     }
 
     @Transactional(readOnly = true)

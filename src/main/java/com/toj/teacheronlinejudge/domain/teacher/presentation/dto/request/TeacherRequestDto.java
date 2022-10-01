@@ -1,17 +1,14 @@
 package com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request;
 
 import com.toj.teacheronlinejudge.domain.teacher.domain.Teacher;
+import com.toj.teacheronlinejudge.global.s3.DefaultProfileImg;
 import lombok.Getter;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Getter
 public class TeacherRequestDto {
-
-    @NotNull
-    private String profileImg;
 
     @NotEmpty(message = "이름을 입력해주세요")
     @Size(min = 2, max = 6)
@@ -23,7 +20,7 @@ public class TeacherRequestDto {
 
     public Teacher toEntity() {
         return Teacher.builder()
-                .profileImg(profileImg)
+                .profileImg(DefaultProfileImg.DEFAULT_PROFILE_IMG)
                 .name(name)
                 .description(description)
                 .build();
