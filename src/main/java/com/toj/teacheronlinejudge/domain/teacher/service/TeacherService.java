@@ -8,10 +8,14 @@ import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.Teach
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherResponseDto;
 import com.toj.teacheronlinejudge.domain.user.domain.User;
 import com.toj.teacheronlinejudge.domain.user.facade.UserFacade;
+import com.toj.teacheronlinejudge.global.s3.S3Facade;
+import com.toj.teacheronlinejudge.global.s3.S3Properties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +26,7 @@ public class TeacherService {
     private final TeacherRepository teacherRepository;
     private final TeacherFacade teacherFacade;
     private final UserFacade userFacade;
+    private final S3Facade s3Facade;
 
     @Transactional
     public void createTeacher(TeacherRequestDto dto) {
@@ -36,7 +41,7 @@ public class TeacherService {
     @Transactional
     public void updateTeacher(Long id, TeacherRequestDto dto) {
         Teacher teacher = teacherFacade.findTeacherById(id);
-        teacher.updateTeacher(dto.getProfileImg(), dto.getName(), dto.getDescription());
+        teacher.updateTeacher(dto.getName(), dto.getDescription());
     }
 
     @Transactional(readOnly = true)
@@ -59,5 +64,12 @@ public class TeacherService {
         return teacherRepository.findAllByOrderByTierDesc().stream()
                 .map(TeacherRankingResponseDto::of)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void updateTeacherProfile(Long id, MultipartFile multipartFile) throws IOException {
+        Teacher teacher = teacherFacade.findTeacherById(id);
+
+        teacher.updateProfileImg(s3Facade.upload(multipartFile, S3Properties.TEACHER_PROFILE));
     }
 }
