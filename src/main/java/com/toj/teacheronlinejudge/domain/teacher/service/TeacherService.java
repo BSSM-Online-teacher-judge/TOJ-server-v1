@@ -8,14 +8,13 @@ import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.Teach
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherResponseDto;
 import com.toj.teacheronlinejudge.domain.user.domain.User;
 import com.toj.teacheronlinejudge.domain.user.facade.UserFacade;
-import com.toj.teacheronlinejudge.global.s3.S3Facade;
-import com.toj.teacheronlinejudge.global.s3.S3Properties;
+import com.toj.teacheronlinejudge.global.image.s3.S3Facade;
+import com.toj.teacheronlinejudge.global.image.s3.S3Properties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,9 +66,8 @@ public class TeacherService {
     }
 
     @Transactional
-    public void updateTeacherProfile(Long id, MultipartFile multipartFile) throws IOException {
+    public void updateTeacherProfile(Long id, MultipartFile multipartFile) {
         Teacher teacher = teacherFacade.findTeacherById(id);
-
         teacher.updateProfileImg(s3Facade.upload(multipartFile, S3Properties.TEACHER_PROFILE));
     }
 }

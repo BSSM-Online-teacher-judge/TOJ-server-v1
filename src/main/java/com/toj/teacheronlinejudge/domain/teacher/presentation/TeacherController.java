@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -41,7 +40,7 @@ public class TeacherController {
     public void updateTeacherProfile(
             @PathVariable Long id,
             @RequestParam(value = "image")MultipartFile multipartFile
-    ) throws IOException {
+    ) {
         teacherService.updateTeacherProfile(id, multipartFile);
     }
 

@@ -1,4 +1,4 @@
-package com.toj.teacheronlinejudge.global.s3;
+package com.toj.teacheronlinejudge.global.image.s3;
 
 public class S3Properties {
 

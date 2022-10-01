@@ -1,7 +1,7 @@
 package com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request;
 
 import com.toj.teacheronlinejudge.domain.teacher.domain.Teacher;
-import com.toj.teacheronlinejudge.global.s3.DefaultProfileImg;
+import com.toj.teacheronlinejudge.global.image.DefaultProfileImg;
 import lombok.Getter;
 
 import javax.validation.constraints.NotEmpty;

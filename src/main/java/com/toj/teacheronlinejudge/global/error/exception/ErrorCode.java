@@ -33,6 +33,10 @@ public enum ErrorCode {
 
     ALREADY_LIKE(403, "이미 좋아요를 눌렀습니다."),
     LIKE_NOT_FOUND( 404, "좋아요를 찾을 수 없습니다."),
+
+    FAILED_SAVE_FILE( 422, "파일 저장에 실패했습니다"),
+    EMPTY_FILE( 422, "파일이 비었습니다."),
+    TOO_LONG_TITLE(422, "파일명이 너무 깁니다."),
     ;
 
     private final int status;
