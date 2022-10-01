@@ -53,8 +53,7 @@ public class Teacher extends BaseTimeEntity {
         this.description = description;
     }
 
-    public void updateTeacher(String profileImg, String name, String description) {
-        this.profileImg = profileImg;
+    public void updateTeacher(String name, String description) {
         this.name = name;
         this.description = description;
     }
@@ -77,5 +76,9 @@ public class Teacher extends BaseTimeEntity {
                 + survey.getSua();
 
         this.tier += (positive - (negative*2)) / 6;
+    }
+
+    public void updateProfileImg(String profileImg) {
+        this.profileImg = profileImg;
     }
 }
