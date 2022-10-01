@@ -33,3 +33,15 @@ spring:
 
   jwt:
     secret: aGVsbG9Xb3JsZElzTXlMaWZlQmVjdWFzZU15TGlmZVNPR29vZEJlY2F1c2VGdWNrWW91U2h1dFVw
+
+cloud:
+  aws:
+    s3:
+      bucket: toj-img-bucket
+    stack:
+      auto: false
+    region:
+      static: ap-northeast-2
+    credentials:
+      access-key: AKIASV7YG3ONF2DBY65V
+      secret-key: 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
