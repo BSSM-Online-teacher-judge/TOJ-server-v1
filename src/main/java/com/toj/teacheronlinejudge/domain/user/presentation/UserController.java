@@ -7,6 +7,7 @@ import com.toj.teacheronlinejudge.domain.user.presentation.dto.response.UserResp
 import com.toj.teacheronlinejudge.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
@@ -18,9 +19,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public void signUp(
-            @RequestBody @Valid CreateUserRequest dto
-    ) {
+    public void signUp(@RequestBody @Valid CreateUserRequest dto) {
         userService.signUp(dto);
     }
 
@@ -32,6 +31,11 @@ public class UserController {
     @PutMapping
     public void updateUser(@RequestBody @Valid UpdateUserResponseDto dto) {
         userService.updateUser(dto);
+    }
+
+    @PutMapping("/profile")
+    public void updateProfileImg(@RequestParam(value = "image")MultipartFile multipartFile) {
+        userService.updateProfileImg(multipartFile);
     }
 
     @PostMapping("/send-mail")
