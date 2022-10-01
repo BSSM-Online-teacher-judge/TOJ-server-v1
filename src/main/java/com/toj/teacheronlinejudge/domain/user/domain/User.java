@@ -1,7 +1,7 @@
 package com.toj.teacheronlinejudge.domain.user.domain;
 
-import com.toj.teacheronlinejudge.domain.teacher.domain.Comment;
 import com.toj.teacheronlinejudge.domain.stats.domain.Survey;
+import com.toj.teacheronlinejudge.domain.teacher.domain.Comment;
 import com.toj.teacheronlinejudge.domain.teacher.domain.Like;
 import com.toj.teacheronlinejudge.domain.user.domain.type.Authority;
 import com.toj.teacheronlinejudge.global.entity.BaseTimeEntity;
@@ -23,6 +23,9 @@ public class User extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", nullable = false, unique = true)
     private Long id;
+
+    @Column(name = "profile_img", nullable = false)
+    private String profileImg;
 
     @Column(name = "email", nullable = false, unique = true)
     private String email;
@@ -56,7 +59,8 @@ public class User extends BaseTimeEntity {
     private List<Like> likes = new ArrayList<>();
 
     @Builder
-    public User(String email, String password, String nickName, String name, int grade, int classRoom, Authority authority) {
+    public User(String profileImg, String email, String password, String nickName, String name, int grade, int classRoom, Authority authority) {
+        this.profileImg = profileImg;
         this.email = email;
         this.password = password;
         this.nickName = nickName;
@@ -68,5 +72,9 @@ public class User extends BaseTimeEntity {
 
     public void updateUser(String nickName) {
         this.nickName = nickName;
+    }
+
+    public void updateProfileImg(String profileImg) {
+        this.profileImg = profileImg;
     }
 }
