@@ -24,4 +24,9 @@ public class AuthController {
     public void logout(@RequestHeader("Authorization")String accessToken) {
         authService.logout(accessToken);
     }
+
+    @PutMapping
+    public TokenResponseDto getNewAccessToken(@RequestHeader(value="Refresh-Token") String refreshToken) {
+        return authService.getNewAccessToken(refreshToken);
+    }
 }
