@@ -39,4 +39,13 @@ public class Ad extends BaseTimeEntity {
         this.link = link;
         this.status = status;
     }
+
+    public void updateStatus() {
+        if(this.status.equals(Status.OPEN)) {
+            this.status = Status.CLOSE;
+        }
+        else {
+            this.status = Status.OPEN;
+        }
+    }
 }

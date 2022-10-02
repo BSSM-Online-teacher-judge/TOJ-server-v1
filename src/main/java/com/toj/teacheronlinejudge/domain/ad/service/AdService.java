@@ -42,4 +42,9 @@ public class AdService {
                 .map(AdResponseDto::of)
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public void updateStatus(Long id) {
+        adFacade.findAdById(id).updateStatus();
+    }
 }
