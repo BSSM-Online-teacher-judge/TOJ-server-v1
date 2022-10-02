@@ -39,4 +39,9 @@ public class AdController {
     public void updateStatus(@PathVariable Long id) {
         adService.updateStatus(id);
     }
+
+    @GetMapping("/{id}")
+    public AdResponseDto getAd(@PathVariable Long id) {
+        return adService.getAd(id);
+    }
 }

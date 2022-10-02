@@ -40,6 +40,7 @@ public enum ErrorCode {
     LIKE_NOT_FOUND( 404, "좋아요를 찾을 수 없습니다."),
 
     AD_NOT_FOUND( 404, "광고가 존재하지 않습니다."),
+    ALREADY_CLOSE_AD( 403, "이미 종료된 광고입니다."),
     ;
 
     private final int status;

@@ -47,4 +47,12 @@ public class AdService {
     public void updateStatus(Long id) {
         adFacade.findAdById(id).updateStatus();
     }
+
+    @Transactional(readOnly = true)
+    public AdResponseDto getAd(Long id) {
+        Ad ad = adFacade.findAdById(id);
+        adFacade.validateGetAd(ad);
+
+        return AdResponseDto.of(ad);
+    }
 }
