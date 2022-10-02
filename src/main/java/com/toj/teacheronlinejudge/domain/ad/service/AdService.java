@@ -38,7 +38,7 @@ public class AdService {
 
     @Transactional(readOnly = true)
     public @ResponseBody List<AdResponseDto> getAllAd() {
-        return adRepository.findAll().stream()
+        return adRepository.findAllByOrderByIdDesc().stream()
                 .map(AdResponseDto::of)
                 .collect(Collectors.toList());
     }
