@@ -4,12 +4,17 @@ import com.toj.teacheronlinejudge.domain.ad.domain.Ad;
 import com.toj.teacheronlinejudge.domain.ad.domain.repository.AdRepository;
 import com.toj.teacheronlinejudge.domain.ad.facade.AdFacade;
 import com.toj.teacheronlinejudge.domain.ad.presentation.dto.request.CreateAdRequestDto;
+import com.toj.teacheronlinejudge.domain.ad.presentation.dto.response.AdResponseDto;
 import com.toj.teacheronlinejudge.global.image.s3.S3Facade;
 import com.toj.teacheronlinejudge.global.image.s3.S3Properties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -29,5 +34,12 @@ public class AdService {
     public void deleteAd(Long id) {
         Ad ad = adFacade.findAdById(id);
         adRepository.delete(ad);
+    }
+
+    @Transactional(readOnly = true)
+    public @ResponseBody List<AdResponseDto> getAllAd() {
+        return adRepository.findAll().stream()
+                .map(AdResponseDto::of)
+                .collect(Collectors.toList());
     }
 }
