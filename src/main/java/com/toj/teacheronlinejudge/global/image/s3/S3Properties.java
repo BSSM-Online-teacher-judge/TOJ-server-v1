@@ -4,5 +4,5 @@ public class S3Properties {
 
     public static final String USER_PROFILE = "user-profile/";
     public static final String TEACHER_PROFILE = "teacher-profile/";
-    public static final String AD_IMG = "ad-image/";
+    public static final String AD_IMG = "ad-img/";
 }
