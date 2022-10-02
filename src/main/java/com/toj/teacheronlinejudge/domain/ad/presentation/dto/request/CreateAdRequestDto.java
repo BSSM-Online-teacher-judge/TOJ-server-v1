@@ -1,6 +1,7 @@
 package com.toj.teacheronlinejudge.domain.ad.presentation.dto.request;
 
 import com.toj.teacheronlinejudge.domain.ad.domain.Ad;
+import com.toj.teacheronlinejudge.domain.ad.domain.type.Status;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
@@ -18,6 +19,7 @@ public class CreateAdRequestDto {
                 .img(img)
                 .advertiser(advertiser)
                 .link(link)
+                .status(Status.OPEN)
                 .build();
     }
 }

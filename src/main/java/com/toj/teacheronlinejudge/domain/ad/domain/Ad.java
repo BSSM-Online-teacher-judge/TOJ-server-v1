@@ -1,5 +1,6 @@
 package com.toj.teacheronlinejudge.domain.ad.domain;
 
+import com.toj.teacheronlinejudge.domain.ad.domain.type.Status;
 import com.toj.teacheronlinejudge.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -27,10 +28,15 @@ public class Ad extends BaseTimeEntity {
     @Column(name = "link")
     private String link;
 
+    @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
     @Builder
-    public Ad(String img, String advertiser, String link) {
+    public Ad(String img, String advertiser, String link, Status status) {
         this.img = img;
         this.advertiser = advertiser;
         this.link = link;
+        this.status = status;
     }
 }
