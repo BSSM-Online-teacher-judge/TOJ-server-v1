@@ -18,10 +18,10 @@ spring:
       ddl-auto: update
 
   datasource:
-#    url: jdbc:mysql://localhost:3308/toj_db
-    url: jdbc:mysql://toj-rds.ct8xsm5h9sob.ap-northeast-2.rds.amazonaws.com/toj_db
+    url: jdbc:mysql://localhost:3308/toj_db
+#    url: jdbc:mysql://toj-rds.ct8xsm5h9sob.ap-northeast-2.rds.amazonaws.com/toj_db
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: admin
+    username: jik
     password: jesusisking
 
   redis:

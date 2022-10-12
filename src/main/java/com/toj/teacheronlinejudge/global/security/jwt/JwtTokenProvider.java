@@ -33,7 +33,7 @@ public class JwtTokenProvider {
     }
 
     public String createAccessToken(String email) {
-        return createToken(email, JwtProperties.ACCESS_TOKEN_VALID_TIME)    ;
+        return createToken(email, JwtProperties.ACCESS_TOKEN_VALID_TIME);
     }
 
     public String createRefreshToken(String email) {
