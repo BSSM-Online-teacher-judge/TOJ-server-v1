@@ -37,7 +37,6 @@ public class AuthService {
         return TokenResponseDto.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
-                .authority(user.getAuthority())
                 .build();
     }
 

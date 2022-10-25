@@ -12,22 +12,28 @@ public class TeacherResponseDto {
     private String name;
     private String description;
     private String profileImg;
-    private boolean isCompleted;
     private int numberOfSubmit;
     private int numberOfLikes;
+    private boolean isCompleted;
+    private boolean isLiked;
 
     public static TeacherResponseDto of(Teacher teacher, User user) {
+
         boolean isCompleted = teacher.getSurveyList().stream()
-                .anyMatch(survey -> survey.getUser().getEmail().equals(user.getEmail()));
+            .anyMatch(survey -> survey.getUser().getEmail().equals(user.getEmail()));
+
+        boolean isLiked = teacher.getLikes().stream()
+            .anyMatch(like -> like.getUser().getEmail().equals(user.getEmail()));
 
         return TeacherResponseDto.builder()
                 .id(teacher.getId())
                 .name(teacher.getName())
                 .description(teacher.getDescription())
                 .profileImg(teacher.getProfileImg())
-                .isCompleted(isCompleted)
                 .numberOfSubmit(teacher.getSurveyList().size())
                 .numberOfLikes(teacher.getLikes().size())
+                .isCompleted(isCompleted)
+                .isLiked(isLiked)
                 .build();
     }
 }
