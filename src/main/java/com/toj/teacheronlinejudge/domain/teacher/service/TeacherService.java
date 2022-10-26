@@ -4,6 +4,7 @@ import com.toj.teacheronlinejudge.domain.teacher.domain.Teacher;
 import com.toj.teacheronlinejudge.domain.teacher.domain.repository.TeacherRepository;
 import com.toj.teacheronlinejudge.domain.teacher.facade.TeacherFacade;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request.TeacherRequestDto;
+import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherOfTheMonthResponseDto;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherRankingResponseDto;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherResponseDto;
 import com.toj.teacheronlinejudge.domain.user.domain.User;
@@ -69,5 +70,12 @@ public class TeacherService {
     public void updateTeacherProfile(Long id, MultipartFile multipartFile) {
         Teacher teacher = teacherFacade.findTeacherById(id);
         teacher.updateProfileImg(s3Facade.upload(multipartFile, S3Properties.TEACHER_PROFILE));
+    }
+
+    @Transactional(readOnly = true)
+    public List<TeacherOfTheMonthResponseDto> findTeacherOfTheMonth() {
+        return teacherRepository.findTop3ByOrderByTierDesc().stream()
+            .map(TeacherOfTheMonthResponseDto::of)
+            .collect(Collectors.toList());
     }
 }
