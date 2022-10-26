@@ -6,10 +6,10 @@ import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.CheckCode
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.CreateUserRequest;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.UpdateUserResponseDto;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.response.UserResponseDto;
-import com.toj.teacheronlinejudge.global.image.s3.S3Facade;
-import com.toj.teacheronlinejudge.global.image.s3.S3Properties;
 import com.toj.teacheronlinejudge.global.redis.RedisService;
 import com.toj.teacheronlinejudge.global.utils.RandomCodeUtil;
+import com.toj.teacheronlinejudge.infrastructure.image.s3.S3Properties;
+import com.toj.teacheronlinejudge.infrastructure.image.s3.facade.S3Facade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,6 +23,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class UserService {
 
+    private final S3Properties s3Properties;
     private final UserFacade userFacade;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -78,7 +79,7 @@ public class UserService {
 
     @Transactional
     public void updateProfileImg(MultipartFile multipartFile) {
-        String fileName = s3Facade.upload(multipartFile, S3Properties.USER_PROFILE);
+        String fileName = s3Facade.uploadImage(multipartFile, s3Properties.getUser());
         userFacade.findUserByEmail(userFacade.getCurrentUser().getEmail())
                 .updateProfileImg(fileName);
     }

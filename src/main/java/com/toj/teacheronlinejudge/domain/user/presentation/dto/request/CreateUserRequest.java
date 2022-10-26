@@ -2,7 +2,6 @@ package com.toj.teacheronlinejudge.domain.user.presentation.dto.request;
 
 import com.toj.teacheronlinejudge.domain.user.domain.User;
 import com.toj.teacheronlinejudge.domain.user.domain.type.Authority;
-import com.toj.teacheronlinejudge.global.image.DefaultProfileImg;
 import lombok.Getter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 

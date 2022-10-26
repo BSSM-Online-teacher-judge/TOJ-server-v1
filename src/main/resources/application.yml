@@ -18,8 +18,8 @@ spring:
       ddl-auto: update
 
   datasource:
-    url: jdbc:mysql://localhost:3308/toj_db
 #    url: jdbc:mysql://toj-rds.ct8xsm5h9sob.ap-northeast-2.rds.amazonaws.com/toj_db
+    url: jdbc:mysql://localhost:3308/toj_db
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: jik
     password: jesusisking
@@ -47,6 +47,9 @@ cloud:
   aws:
     s3:
       bucket: toj-img-bucket # 버킷 이름
+      user: "user-profile/"
+      teaher: "teacher-profile/"
+      ad: "ad-img/"
     region:
       static: ap-northeast-2  # 리전 정보
     stack:
@@ -101,3 +104,18 @@ cloud:
       instanceProfile: true
       accessKey: ${AWS_ACCESS_KEY}
       secretKey: ${AWS_SECRET_KEY}
+
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB

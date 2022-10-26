@@ -6,8 +6,8 @@ import com.toj.teacheronlinejudge.domain.ad.domain.type.AdSize;
 import com.toj.teacheronlinejudge.domain.ad.facade.AdFacade;
 import com.toj.teacheronlinejudge.domain.ad.presentation.dto.request.CreateAdRequestDto;
 import com.toj.teacheronlinejudge.domain.ad.presentation.dto.response.AdResponseDto;
-import com.toj.teacheronlinejudge.global.image.s3.S3Facade;
-import com.toj.teacheronlinejudge.global.image.s3.S3Properties;
+import com.toj.teacheronlinejudge.infrastructure.image.s3.S3Properties;
+import com.toj.teacheronlinejudge.infrastructure.image.s3.facade.S3Facade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,10 +24,11 @@ public class AdService {
     private final AdRepository adRepository;
     private final AdFacade adFacade;
     private final S3Facade s3Facade;
+    private final S3Properties s3Properties;
 
     @Transactional
     public void createAd(CreateAdRequestDto dto, MultipartFile multipartFile) {
-        String img = s3Facade.upload(multipartFile, S3Properties.AD_IMG);
+        String img = s3Facade.uploadImage(multipartFile, s3Properties.getAd());
         adRepository.save(dto.toEntity(img));
     }
 

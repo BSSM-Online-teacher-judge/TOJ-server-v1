@@ -9,8 +9,8 @@ import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.Teach
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherResponseDto;
 import com.toj.teacheronlinejudge.domain.user.domain.User;
 import com.toj.teacheronlinejudge.domain.user.facade.UserFacade;
-import com.toj.teacheronlinejudge.global.image.s3.S3Facade;
-import com.toj.teacheronlinejudge.global.image.s3.S3Properties;
+import com.toj.teacheronlinejudge.infrastructure.image.s3.S3Properties;
+import com.toj.teacheronlinejudge.infrastructure.image.s3.facade.S3Facade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class TeacherService {
 
+    private final S3Properties s3Properties;
     private final TeacherRepository teacherRepository;
     private final TeacherFacade teacherFacade;
     private final UserFacade userFacade;
@@ -69,7 +70,7 @@ public class TeacherService {
     @Transactional
     public void updateTeacherProfile(Long id, MultipartFile multipartFile) {
         Teacher teacher = teacherFacade.findTeacherById(id);
-        teacher.updateProfileImg(s3Facade.upload(multipartFile, S3Properties.TEACHER_PROFILE));
+        teacher.updateProfileImg(s3Facade.uploadImage(multipartFile, s3Properties.getTeacher()));
     }
 
     @Transactional(readOnly = true)
