@@ -2,6 +2,7 @@ package com.toj.teacheronlinejudge.domain.ad.service;
 
 import com.toj.teacheronlinejudge.domain.ad.domain.Ad;
 import com.toj.teacheronlinejudge.domain.ad.domain.repository.AdRepository;
+import com.toj.teacheronlinejudge.domain.ad.domain.type.AdSize;
 import com.toj.teacheronlinejudge.domain.ad.facade.AdFacade;
 import com.toj.teacheronlinejudge.domain.ad.presentation.dto.request.CreateAdRequestDto;
 import com.toj.teacheronlinejudge.domain.ad.presentation.dto.response.AdResponseDto;
@@ -37,8 +38,8 @@ public class AdService {
     }
 
     @Transactional(readOnly = true)
-    public @ResponseBody List<AdResponseDto> getAllAd() {
-        return adRepository.findAllByOrderByIdDesc().stream()
+    public @ResponseBody List<AdResponseDto> getAllAd(AdSize adSize) {
+        return adRepository.findByAdSizeOrderByIdDesc(adSize).stream()
                 .map(AdResponseDto::of)
                 .collect(Collectors.toList());
     }
