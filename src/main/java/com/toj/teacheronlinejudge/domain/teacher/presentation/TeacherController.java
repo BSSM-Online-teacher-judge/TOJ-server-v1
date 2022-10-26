@@ -1,6 +1,7 @@
 package com.toj.teacheronlinejudge.domain.teacher.presentation;
 
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request.TeacherRequestDto;
+import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherOfTheMonthResponseDto;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherRankingResponseDto;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherResponseDto;
 import com.toj.teacheronlinejudge.domain.teacher.service.TeacherService;
@@ -57,5 +58,10 @@ public class TeacherController {
     @GetMapping("/ranking")
     public List<TeacherRankingResponseDto> findTeacherRanking() {
         return teacherService.findTeacherRanking();
+    }
+
+    @GetMapping("/month")
+    public List<TeacherOfTheMonthResponseDto> findTeacherOfTheMonth() {
+        return teacherService.findTeacherOfTheMonth();
     }
 }
