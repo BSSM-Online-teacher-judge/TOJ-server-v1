@@ -47,9 +47,9 @@ cloud:
   aws:
     s3:
       bucket: toj-img-bucket # 버킷 이름
-      user: "user-profile/"
-      teaher: "teacher-profile/"
-      ad: "ad-img/"
+      user: user-profile/
+      teaher: teacher-profile/
+      ad: ad-img/
     region:
       static: ap-northeast-2  # 리전 정보
     stack:
@@ -96,6 +96,9 @@ cloud:
   aws:
     s3:
       bucket: ${BUCKET_NAME} # 버킷 이름
+      user: user-profile/
+      teaher: teacher-profile/
+      ad: ad-img/
     region:
       static: ${AWS_REGION} # 리전 정보
     stack:
@@ -104,16 +107,6 @@ cloud:
       instanceProfile: true
       accessKey: ${AWS_ACCESS_KEY}
       secretKey: ${AWS_SECRET_KEY}
-
-  jpa:
-    properties:
-      hibernate:
-        format_sql: true
-    generate-ddl: true
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-
 
   servlet:
     multipart:

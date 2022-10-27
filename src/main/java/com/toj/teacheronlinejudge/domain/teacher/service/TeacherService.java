@@ -50,8 +50,8 @@ public class TeacherService {
         User user = userFacade.getCurrentUser();
 
         return teacherRepository.findAllByOrderByLikesDesc().stream()
-                .map(teacher -> TeacherResponseDto.of(teacher, user))
-                .collect(Collectors.toList());
+            .map(teacher -> TeacherResponseDto.of(teacher, user))
+            .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
@@ -63,8 +63,8 @@ public class TeacherService {
     @Transactional(readOnly = true)
     public List<TeacherRankingResponseDto> findTeacherRanking() {
         return teacherRepository.findAllByOrderByTierDesc().stream()
-                .map(TeacherRankingResponseDto::of)
-                .collect(Collectors.toList());
+            .map(TeacherRankingResponseDto::of)
+            .collect(Collectors.toList());
     }
 
     @Transactional
