@@ -4,6 +4,7 @@ import com.toj.teacheronlinejudge.domain.user.domain.repository.UserRepository;
 import com.toj.teacheronlinejudge.domain.user.facade.UserFacade;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.CheckCodeRequestDto;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.CreateUserRequest;
+import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.UpdateUserProfileRequest;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.UpdateUserResponseDto;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.response.UserResponseDto;
 import com.toj.teacheronlinejudge.global.redis.RedisService;
@@ -14,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.time.Duration;
 import java.util.Map;
@@ -78,9 +78,8 @@ public class UserService {
     }
 
     @Transactional
-    public void updateProfileImg(MultipartFile multipartFile) {
-        String fileName = s3Facade.uploadImage(multipartFile, s3Properties.getUser());
+    public void updateProfileImg(UpdateUserProfileRequest request) {
         userFacade.findUserByEmail(userFacade.getCurrentUser().getEmail())
-                .updateProfileImg(fileName);
+                .updateProfileImg(request.getImg());
     }
 }

@@ -2,12 +2,12 @@ package com.toj.teacheronlinejudge.domain.user.presentation;
 
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.CheckCodeRequestDto;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.CreateUserRequest;
+import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.UpdateUserProfileRequest;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.UpdateUserResponseDto;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.response.UserResponseDto;
 import com.toj.teacheronlinejudge.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
@@ -34,8 +34,8 @@ public class UserController {
     }
 
     @PutMapping("/profile")
-    public void updateProfileImg(@RequestParam(value = "image")MultipartFile multipartFile) {
-        userService.updateProfileImg(multipartFile);
+    public void updateProfileImg(@RequestBody UpdateUserProfileRequest request) {
+        userService.updateProfileImg(request);
     }
 
     @PostMapping("/send-mail")
