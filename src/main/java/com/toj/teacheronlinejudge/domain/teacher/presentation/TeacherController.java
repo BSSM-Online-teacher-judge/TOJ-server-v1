@@ -1,6 +1,7 @@
 package com.toj.teacheronlinejudge.domain.teacher.presentation;
 
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request.TeacherRequestDto;
+import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request.UpdateProfileRequest;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherOfTheMonthResponseDto;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherRankingResponseDto;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherResponseDto;
@@ -37,12 +38,9 @@ public class TeacherController {
         teacherService.updateTeacher(id, dto);
     }
 
-    @PutMapping("/{id}/profile")
-    public void updateTeacherProfile(
-            @PathVariable Long id,
-            @RequestParam(value = "image")MultipartFile multipartFile
-    ) {
-        teacherService.updateTeacherProfile(id, multipartFile);
+    @PutMapping("/profile")
+    public void updateTeacherProfile(@RequestBody UpdateProfileRequest request) {
+        teacherService.updateTeacherProfile(request);
     }
 
     @GetMapping

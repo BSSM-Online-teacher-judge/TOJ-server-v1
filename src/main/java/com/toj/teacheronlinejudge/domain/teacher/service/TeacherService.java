@@ -4,6 +4,7 @@ import com.toj.teacheronlinejudge.domain.teacher.domain.Teacher;
 import com.toj.teacheronlinejudge.domain.teacher.domain.repository.TeacherRepository;
 import com.toj.teacheronlinejudge.domain.teacher.facade.TeacherFacade;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request.TeacherRequestDto;
+import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request.UpdateProfileRequest;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherOfTheMonthResponseDto;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherRankingResponseDto;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherResponseDto;
@@ -14,7 +15,6 @@ import com.toj.teacheronlinejudge.infrastructure.image.s3.facade.S3Facade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -68,9 +68,9 @@ public class TeacherService {
     }
 
     @Transactional
-    public void updateTeacherProfile(Long id, MultipartFile multipartFile) {
-        Teacher teacher = teacherFacade.findTeacherById(id);
-        teacher.updateProfileImg(s3Facade.uploadImage(multipartFile, s3Properties.getTeacher()));
+    public void updateTeacherProfile(UpdateProfileRequest request) {
+        Teacher teacher = teacherFacade.findTeacherById(request.getId());
+        teacher.updateProfileImg(request.getImg());
     }
 
     @Transactional(readOnly = true)
