@@ -6,7 +6,6 @@ import com.toj.teacheronlinejudge.domain.ad.presentation.dto.response.AdResponse
 import com.toj.teacheronlinejudge.domain.ad.service.AdService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -19,7 +18,7 @@ public class AdController {
     private final AdService adService;
 
     @PostMapping
-    public void createAd(@RequestPart(name = "dto") @Valid CreateAdRequestDto dto) {
+    public void createAd(@RequestBody @Valid CreateAdRequestDto dto) {
         adService.createAd(dto);
     }
 
