@@ -19,11 +19,8 @@ public class AdController {
     private final AdService adService;
 
     @PostMapping
-    public void createAd(
-        @RequestPart(name = "dto") @Valid CreateAdRequestDto dto,
-        @RequestPart(name = "image")MultipartFile multipartFile
-    ) {
-        adService.createAd(dto, multipartFile);
+    public void createAd(@RequestPart(name = "dto") @Valid CreateAdRequestDto dto) {
+        adService.createAd(dto);
     }
 
     @DeleteMapping("/{id}")

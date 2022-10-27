@@ -17,12 +17,15 @@ public class CreateAdRequestDto {
 
     private AdSize adSize;
 
+    private String img;
+
     public Ad toEntity(String img) {
         return Ad.builder()
             .img(img)
             .advertiser(advertiser)
             .link(link)
             .adSize(adSize)
+            .img(img)
             .status(Status.OPEN)
             .build();
     }

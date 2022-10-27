@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,9 +26,8 @@ public class AdService {
     private final S3Properties s3Properties;
 
     @Transactional
-    public void createAd(CreateAdRequestDto dto, MultipartFile multipartFile) {
-        String img = s3Facade.uploadImage(multipartFile, s3Properties.getAd());
-        adRepository.save(dto.toEntity(img));
+    public void createAd(CreateAdRequestDto dto) {
+        adRepository.save(dto.toEntity(dto.getImg()));
     }
 
     @Transactional
