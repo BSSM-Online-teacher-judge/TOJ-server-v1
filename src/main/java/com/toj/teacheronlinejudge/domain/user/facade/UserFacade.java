@@ -45,7 +45,7 @@ public class UserFacade {
 
     public User getCurrentUser() {
         AuthDetails auth = (AuthDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return auth.getUser();
+        return findUserByEmail(auth.getUsername());
     }
 
     public User getUserWithComment(Long id) {
