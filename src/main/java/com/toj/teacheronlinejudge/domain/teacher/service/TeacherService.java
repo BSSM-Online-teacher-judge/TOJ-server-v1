@@ -4,17 +4,17 @@ import com.toj.teacheronlinejudge.domain.teacher.domain.Teacher;
 import com.toj.teacheronlinejudge.domain.teacher.domain.repository.TeacherRepository;
 import com.toj.teacheronlinejudge.domain.teacher.facade.TeacherFacade;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request.TeacherRequestDto;
+import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.request.UpdateProfileRequest;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherOfTheMonthResponseDto;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherRankingResponseDto;
 import com.toj.teacheronlinejudge.domain.teacher.presentation.dto.response.TeacherResponseDto;
 import com.toj.teacheronlinejudge.domain.user.domain.User;
 import com.toj.teacheronlinejudge.domain.user.facade.UserFacade;
-import com.toj.teacheronlinejudge.global.image.s3.S3Facade;
-import com.toj.teacheronlinejudge.global.image.s3.S3Properties;
+import com.toj.teacheronlinejudge.infrastructure.image.s3.S3Properties;
+import com.toj.teacheronlinejudge.infrastructure.image.s3.facade.S3Facade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class TeacherService {
 
+    private final S3Properties s3Properties;
     private final TeacherRepository teacherRepository;
     private final TeacherFacade teacherFacade;
     private final UserFacade userFacade;
@@ -49,8 +50,8 @@ public class TeacherService {
         User user = userFacade.getCurrentUser();
 
         return teacherRepository.findAllByOrderByLikesDesc().stream()
-                .map(teacher -> TeacherResponseDto.of(teacher, user))
-                .collect(Collectors.toList());
+            .map(teacher -> TeacherResponseDto.of(teacher, user))
+            .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
@@ -62,14 +63,14 @@ public class TeacherService {
     @Transactional(readOnly = true)
     public List<TeacherRankingResponseDto> findTeacherRanking() {
         return teacherRepository.findAllByOrderByTierDesc().stream()
-                .map(TeacherRankingResponseDto::of)
-                .collect(Collectors.toList());
+            .map(TeacherRankingResponseDto::of)
+            .collect(Collectors.toList());
     }
 
     @Transactional
-    public void updateTeacherProfile(Long id, MultipartFile multipartFile) {
-        Teacher teacher = teacherFacade.findTeacherById(id);
-        teacher.updateProfileImg(s3Facade.upload(multipartFile, S3Properties.TEACHER_PROFILE));
+    public void updateTeacherProfile(UpdateProfileRequest request) {
+        Teacher teacher = teacherFacade.findTeacherById(request.getId());
+        teacher.updateProfileImg(request.getImg());
     }
 
     @Transactional(readOnly = true)

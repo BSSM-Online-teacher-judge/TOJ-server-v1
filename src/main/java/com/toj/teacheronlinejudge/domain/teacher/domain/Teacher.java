@@ -75,7 +75,12 @@ public class Teacher extends BaseTimeEntity {
                 + survey.getStubborn()
                 + survey.getSua();
 
-        this.tier += (positive - (negative*2)) / 6;
+        this.tier = calcTier(positive, negative);
+    }
+
+    private int calcTier(int positive, int negative) {
+        int surveyTier = positive - (negative*2) / 6;
+        return (this.tier + surveyTier) / 2;
     }
 
     public void updateProfileImg(String profileImg) {

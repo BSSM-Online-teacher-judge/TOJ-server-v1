@@ -1,6 +1,7 @@
 package com.toj.teacheronlinejudge.domain.ad.presentation.dto.response;
 
 import com.toj.teacheronlinejudge.domain.ad.domain.Ad;
+import com.toj.teacheronlinejudge.domain.ad.domain.type.AdSize;
 import com.toj.teacheronlinejudge.domain.ad.domain.type.Status;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,13 +20,16 @@ public class AdResponseDto {
 
     private Status status;
 
+    private AdSize adSize;
+
     public static AdResponseDto of(Ad ad) {
         return AdResponseDto.builder()
-                .id(ad.getId())
-                .img(ad.getImg())
-                .advertiser(ad.getAdvertiser())
-                .link(ad.getLink())
-                .status(ad.getStatus())
-                .build();
+            .id(ad.getId())
+            .img(ad.getImg())
+            .advertiser(ad.getAdvertiser())
+            .link(ad.getLink())
+            .status(ad.getStatus())
+            .adSize(ad.getAdSize())
+            .build();
     }
 }

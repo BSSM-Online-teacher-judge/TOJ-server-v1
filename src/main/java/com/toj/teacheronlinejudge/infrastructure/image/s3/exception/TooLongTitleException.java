@@ -1,4 +1,4 @@
-package com.toj.teacheronlinejudge.global.image.exception;
+package com.toj.teacheronlinejudge.infrastructure.image.s3.exception;
 
 import com.toj.teacheronlinejudge.global.error.exception.BusinessException;
 import com.toj.teacheronlinejudge.global.error.exception.ErrorCode;

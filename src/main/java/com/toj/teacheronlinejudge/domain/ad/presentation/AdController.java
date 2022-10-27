@@ -1,11 +1,11 @@
 package com.toj.teacheronlinejudge.domain.ad.presentation;
 
-import com.toj.teacheronlinejudge.domain.ad.presentation.dto.response.AdResponseDto;
+import com.toj.teacheronlinejudge.domain.ad.domain.type.AdSize;
 import com.toj.teacheronlinejudge.domain.ad.presentation.dto.request.CreateAdRequestDto;
+import com.toj.teacheronlinejudge.domain.ad.presentation.dto.response.AdResponseDto;
 import com.toj.teacheronlinejudge.domain.ad.service.AdService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -18,11 +18,8 @@ public class AdController {
     private final AdService adService;
 
     @PostMapping
-    public void createAd(
-            @RequestPart(name = "dto") @Valid CreateAdRequestDto dto,
-            @RequestPart(name = "image")MultipartFile multipartFile
-    ) {
-        adService.createAd(dto, multipartFile);
+    public void createAd(@RequestBody @Valid CreateAdRequestDto dto) {
+        adService.createAd(dto);
     }
 
     @DeleteMapping("/{id}")
@@ -31,8 +28,8 @@ public class AdController {
     }
 
     @GetMapping
-    public List<AdResponseDto> getAllAd() {
-        return adService.getAllAd();
+    public List<AdResponseDto> getAllAd(@RequestParam("size")AdSize adSize) {
+        return adService.getAllAd(adSize);
     }
 
     @PutMapping("/{id}")

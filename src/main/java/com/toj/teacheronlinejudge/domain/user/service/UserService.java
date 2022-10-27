@@ -4,17 +4,17 @@ import com.toj.teacheronlinejudge.domain.user.domain.repository.UserRepository;
 import com.toj.teacheronlinejudge.domain.user.facade.UserFacade;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.CheckCodeRequestDto;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.CreateUserRequest;
+import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.UpdateUserProfileRequest;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.request.UpdateUserResponseDto;
 import com.toj.teacheronlinejudge.domain.user.presentation.dto.response.UserResponseDto;
-import com.toj.teacheronlinejudge.global.image.s3.S3Facade;
-import com.toj.teacheronlinejudge.global.image.s3.S3Properties;
 import com.toj.teacheronlinejudge.global.redis.RedisService;
 import com.toj.teacheronlinejudge.global.utils.RandomCodeUtil;
+import com.toj.teacheronlinejudge.infrastructure.image.s3.S3Properties;
+import com.toj.teacheronlinejudge.infrastructure.image.s3.facade.S3Facade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.time.Duration;
 import java.util.Map;
@@ -23,6 +23,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class UserService {
 
+    private final S3Properties s3Properties;
     private final UserFacade userFacade;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -77,9 +78,8 @@ public class UserService {
     }
 
     @Transactional
-    public void updateProfileImg(MultipartFile multipartFile) {
-        String fileName = s3Facade.upload(multipartFile, S3Properties.USER_PROFILE);
+    public void updateProfileImg(UpdateUserProfileRequest request) {
         userFacade.findUserByEmail(userFacade.getCurrentUser().getEmail())
-                .updateProfileImg(fileName);
+                .updateProfileImg(request.getImg());
     }
 }
