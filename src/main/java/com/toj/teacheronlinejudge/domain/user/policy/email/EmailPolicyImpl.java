@@ -9,7 +9,7 @@ public class EmailPolicyImpl implements EmailPolicy {
     public boolean isSchoolEmail(String email) {
 
         boolean isCorrectForm = email.endsWith("@bssm.hs.kr");
-        boolean isCorrectSize = email.length() != 9;
+        boolean isCorrectSize = email.length() == 20;
 
         return isCorrectForm && isCorrectSize;
     }
