@@ -5,5 +5,5 @@ import com.toj.teacheronlinejudge.domain.teacher.domain.Teacher;
 
 public interface StatsPolicy {
 
-    void updateStats(Teacher teacher, Survey survey);
+    void calculateStats(Teacher teacher, Survey survey);
 }

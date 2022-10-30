@@ -7,7 +7,6 @@ import com.toj.teacheronlinejudge.domain.stats.facade.StatsFacade;
 import com.toj.teacheronlinejudge.domain.stats.presentation.dto.response.StatsResponseDto;
 import com.toj.teacheronlinejudge.domain.teacher.domain.Teacher;
 import com.toj.teacheronlinejudge.domain.teacher.facade.TeacherFacade;
-import com.toj.teacheronlinejudge.domain.teacher.service.stats.StatsPolicy;
 import com.toj.teacheronlinejudge.global.utils.DateUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +19,6 @@ public class StatsService {
     private final StatsRepository statsRepository;
     private final StatsFacade statsFacade;
     private final TeacherFacade teacherFacade;
-    private final StatsPolicy statsPolicy;
 
     public void updateStats(Survey survey) {
         Stats stats = statsRepository.findByTeacherAndCreatedAtBetween(
@@ -31,11 +29,12 @@ public class StatsService {
 
         if (stats == null) {
             stats = statsRepository.save(Stats.createStats(survey));
-        } else {
+        }
+        else {
             stats.update(survey);
         }
 
-        statsPolicy.updateStats(stats.getTeacher(), survey);
+        statsFacade.updateStats(stats.getTeacher(), survey);
     }
 
     @Transactional(readOnly = true)

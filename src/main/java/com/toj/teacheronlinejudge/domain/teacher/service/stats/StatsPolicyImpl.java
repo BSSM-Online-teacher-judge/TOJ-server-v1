@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class StatsPolicyImpl implements StatsPolicy {
     
     @Override
-    public void updateStats(Teacher teacher, Survey survey) {
+    public void calculateStats(Teacher teacher, Survey survey) {
 
         // TODO :: 간식 준비성 오버롤에 포함할지 논의 필요
         // TODO :: 티어 논의 필요
