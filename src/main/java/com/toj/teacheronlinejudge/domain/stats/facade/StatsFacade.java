@@ -5,7 +5,7 @@ import com.toj.teacheronlinejudge.domain.stats.domain.Survey;
 import com.toj.teacheronlinejudge.domain.stats.domain.repository.StatsRepository;
 import com.toj.teacheronlinejudge.domain.stats.exception.StatsNotFoundException;
 import com.toj.teacheronlinejudge.domain.teacher.domain.Teacher;
-import com.toj.teacheronlinejudge.domain.teacher.service.stats.StatsPolicy;
+import com.toj.teacheronlinejudge.domain.teacher.policy.stats.StatsPolicy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
