@@ -58,29 +58,8 @@ public class Teacher extends BaseTimeEntity {
         this.description = description;
     }
 
-    public void updateTier(Survey survey) {
-
-        // TODO :: 간식 준비성 오버롤에 포함할지 논의 필요
-        // TODO :: 티어 공식 논의 필요
-        int positive =
-                survey.getExpertise()
-                + survey.getFairness()
-                + survey.getHumor()
-                + survey.getModesty()
-                + survey.getPassion()
-                + survey.getTenacity();
-
-        int negative =
-                survey.getAuthoritarianism()
-                + survey.getStubborn()
-                + survey.getSua();
-
-        this.tier = calcTier(positive, negative);
-    }
-
-    private int calcTier(int positive, int negative) {
-        int surveyTier = positive - (negative*2) / 6;
-        return (this.tier + surveyTier) / 2;
+    public void updateTier(int tier) {
+        this.tier = tier;
     }
 
     public void updateProfileImg(String profileImg) {

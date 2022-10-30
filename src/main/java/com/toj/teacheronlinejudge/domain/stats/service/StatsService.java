@@ -29,11 +29,12 @@ public class StatsService {
 
         if (stats == null) {
             stats = statsRepository.save(Stats.createStats(survey));
-        } else {
+        }
+        else {
             stats.update(survey);
         }
 
-        stats.getTeacher().updateTier(survey);
+        statsFacade.updateStats(stats.getTeacher(), survey);
     }
 
     @Transactional(readOnly = true)

@@ -68,18 +68,19 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public UserResponseDto findCurrentUser() {
-        return UserResponseDto.of(userFacade.getCurrentUser());
+        User user = userFacade.getCurrentUser();
+        return UserResponseDto.of(user);
     }
 
     @Transactional
     public void updateUser(UpdateUserResponseDto dto) {
-        userFacade.findUserByEmail(userFacade.getCurrentUser().getEmail())
-                .updateUser(dto.getNickName());
+        User user = userFacade.getCurrentUser();
+        user.updateUser(dto.getNickName());
     }
 
     @Transactional
     public void updateProfileImg(UpdateUserProfileRequest request) {
-        userFacade.findUserByEmail(userFacade.getCurrentUser().getEmail())
-                .updateProfileImg(request.getImg());
+        User user = userFacade.getCurrentUser();
+        user.updateProfileImg(request.getImg());
     }
 }
